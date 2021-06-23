@@ -1,29 +1,43 @@
-// Custom.scss
-// Include parts of Bootstrap
+// @import './base/base';
+ul{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+.quote{
+    padding: 40px;
+    font-size: 40px;
+    font-weight: bold;
+    writing-mode: vertical-rl;
+}
 
-// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
-@import "../bootstrap/scss/functions";
+// @import './layout/header';
+.logo{
+    display: inline-block;
+    background: url('../img/logo.svg') no-repeat;
+    width: 40px;
+    height: 40px;
+    padding-right: 10px;
 
-// 2. Include any default variable overrides here
+    &-mobile{
+        display: inline-block;
+        background: url('../img/logo-text.svg') no-repeat;
+        width: 170px;
+        height: 26px;
+    }
+}
 
-// 3. Include remainder of required Bootstrap stylesheets
-@import "../bootstrap/scss/variables";
-@import "../bootstrap/scss/mixins";
-@import "../bootstrap/scss/utilities";
+// @import './module/banner';
+.banner{
+    background: url('../img/walnutpie.jpg') center;
+    background-size: 150%;
+    height: 100vh;
+}
 
-// 4. Include any optional Bootstrap components as you like
-@import "../bootstrap/scss/root";
-@import "../bootstrap/scss/reboot";
-@import "../bootstrap/scss/type";
-@import "../bootstrap/scss/images";
-@import "../bootstrap/scss/containers";
-@import "../bootstrap/scss/grid";
-
-// 5. Add additional custom code here
-
-// Helpers
-@import "../bootstrap/scss/helpers";
-
-// Utilities
-@import "../bootstrap/scss/utilities/api";
-// scss-docs-end import-stack
+// @import './helpers/.replaceText';
+.replaceText{
+    text-indent:101%; 
+    overflow:hidden; 
+    white-space:nowrap;
+}

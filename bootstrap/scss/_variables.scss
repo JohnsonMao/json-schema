@@ -67,10 +67,10 @@ $colors: (
 // scss-docs-end colors-map
 
 // scss-docs-start theme-color-variables
-$primary:       $blue !default;
-$secondary:     $gray-600 !default;
+$primary:       #3F5D45 !default;
+$secondary:     #EAF0ED !default;
 $success:       $green !default;
-$info:          $cyan !default;
+$info:          #FFE180 !default;
 $warning:       $yellow !default;
 $danger:        $red !default;
 $light:         $gray-100 !default;
@@ -86,7 +86,8 @@ $theme-colors: (
   "warning":    $warning,
   "danger":     $danger,
   "light":      $light,
-  "dark":       $dark
+  "dark":       $dark,
+  "white":      $white
 ) !default;
 // scss-docs-end theme-colors-map
 
@@ -311,9 +312,7 @@ $grid-breakpoints: (
   xs: 0,
   sm: 576px,
   md: 768px,
-  lg: 992px,
-  xl: 1200px,
-  xxl: 1400px
+  lg: 992px
 ) !default;
 // scss-docs-end grid-breakpoints
 
@@ -329,9 +328,7 @@ $grid-breakpoints: (
 $container-max-widths: (
   sm: 540px,
   md: 720px,
-  lg: 960px,
-  xl: 1140px,
-  xxl: 1320px
+  lg: 964px
 ) !default;
 // scss-docs-end container-max-widths
 
