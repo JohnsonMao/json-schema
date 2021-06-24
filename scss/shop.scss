@@ -27,7 +27,7 @@ a{
         height: 26px;
     }
 }
-
+@include
 // @import './module/banner';
 .banner{
     background: url('../img/walnutpie.jpg') center;
