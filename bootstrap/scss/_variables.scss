@@ -215,7 +215,7 @@ $escaped-characters: (
 // Quickly modify global styling by enabling or disabling optional features.
 
 $enable-caret:                true !default;
-$enable-rounded:              true !default;
+$enable-rounded:              false !default;
 $enable-shadows:              false !default;
 $enable-gradients:            false !default;
 $enable-transitions:          true !default;
@@ -251,11 +251,12 @@ $gradient: linear-gradient(180deg, rgba($white, .15), rgba($white, 0)) !default;
 $spacer: 1rem !default;
 $spacers: (
   0: 0,
-  1: $spacer / 4,
-  2: $spacer / 2,
-  3: $spacer,
+  1: $spacer / 2,
+  2: $spacer,
+  3: $spacer * 1.25,
   4: $spacer * 1.5,
-  5: $spacer * 3,
+  5: $spacer * 1.875,
+  6: $spacer * 2.5
 ) !default;
 
 $negative-spacers: if($enable-negative-margins, negativify-map($spacers), null) !default;
@@ -340,7 +341,7 @@ $container-max-widths: (
 // Set the number of columns and specify the width of the gutters.
 
 $grid-columns:                12 !default;
-$grid-gutter-width:           1.5rem !default;
+$grid-gutter-width:           1.25rem !default;
 $grid-row-columns:            6 !default;
 
 $gutters: $spacers !default;

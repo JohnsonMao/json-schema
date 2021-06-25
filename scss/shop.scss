@@ -1,24 +1,40 @@
 // @import './base/base';
-ul{
-    list-style: none;
-}
 a{
     text-decoration: none;
 }
-.quote{
-    padding: 40px;
-    font-size: 40px;
-    font-weight: bold;
-    writing-mode: vertical-rl;
+img{
+    display: block;
+}
+section{
+    margin-bottom: 60px;
+}
+ul{
+    padding: 0;
+    list-style: none;
+}
+.badge{
+    cursor: default;
 }
 
+
+.text-vertical{
+    writing-mode: vertical-rl;
+}
+.text-space-0{
+    letter-spacing: 0;
+}
+.text-space-sm{
+    letter-spacing: 5px;
+}
+.text-space-lg{
+    letter-spacing: 10px;
+}
 // @import './layout/header';
 .logo{
     display: inline-block;
     background: url('../img/logo.svg') no-repeat;
     width: 40px;
     height: 40px;
-    padding-right: 10px;
 
     &-mobile{
         display: inline-block;
@@ -27,12 +43,11 @@ a{
         height: 26px;
     }
 }
-@include
 // @import './module/banner';
 .banner{
-    background: url('../img/walnutpie.jpg') center;
-    background-size: 150%;
-    height: 100vh;
+    background: url('../img/walnutpie.jpg') center no-repeat;
+    background-size: 120%;
+    height: calc(100vh - 100px);
 }
 
 // @import './helpers/.replaceText';
@@ -40,4 +55,15 @@ a{
     text-indent:101%; 
     overflow:hidden; 
     white-space:nowrap;
+}
+.card-imgFrame{
+    position: relative;
+    overflow: hidden;
+    height: calc(315px);
+
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 }
