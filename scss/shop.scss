@@ -1,67 +1,10 @@
-// @import './base/base';
-a{
-    text-decoration: none;
-}
-img{
-    display: block;
-}
-section{
-    margin-bottom: 60px;
-}
-ul{
-    padding: 0;
-    list-style: none;
-}
-.badge{
-    cursor: default;
-}
+@import '../bootstrap/scss/bootstrap.scss';
 
+@import './base';
+@import './utilities';
 
-.text-vertical{
-    writing-mode: vertical-rl;
-}
-.text-space-0{
-    letter-spacing: 0;
-}
-.text-space-sm{
-    letter-spacing: 5px;
-}
-.text-space-lg{
-    letter-spacing: 10px;
-}
-// @import './layout/header';
-.logo{
-    width: 40px;
-    height: 40px;
+@import './components/logo';
+@import './components/banner';
+@import './components/card';
 
-    &-mobile{
-        display: inline-block;
-        background: url('../img/logo-text.svg') no-repeat;
-        width: 170px;
-        height: 26px;
-    }
-}
-// @import './module/banner';
-.banner{
-    background: url('../img/walnutpie.jpg') center no-repeat;
-    background-size: 120%;
-    height: calc(100vh - 100px);
-}
-
-// @import './helpers/.replaceText';
-.replaceText{
-    text-indent:101%; 
-    overflow:hidden; 
-    white-space:nowrap;
-}
-.card-imgFrame{
-    position: relative;
-    overflow: hidden;
-    height: calc(315px);
-
-    img{
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-}
+@import './hover';

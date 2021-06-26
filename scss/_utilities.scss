@@ -1,0 +1,19 @@
+.text-vertical{
+    writing-mode: vertical-rl;
+}
+.text-space-0{
+    letter-spacing: 0;
+}
+.text-space-sm{
+    letter-spacing: 5px;
+}
+.text-space-lg{
+    letter-spacing: 10px;
+}
+.visible-hidden{
+    position: absolute;
+    left: 0;
+    overflow: hidden;
+    text-indent: -101%;
+    z-index: -1;
+}
