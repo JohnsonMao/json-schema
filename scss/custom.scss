@@ -1,0 +1,77 @@
+// Custom.scss
+// Option B: Include parts of Bootstrap
+
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "../bootstrap/scss/functions";
+
+// 2. Include any default variable overrides here
+$primary:       #3F5D45;
+$secondary:     #8DA291;
+$info:          #FFE180;
+$dark:          #EAF0ED;
+// 3. Include remainder of required Bootstrap stylesheets
+@import "../bootstrap/scss/variables";
+@import "../bootstrap/scss/mixins";
+$theme-colors: map-remove($theme-colors, 
+    "success", 
+    "warning", 
+    "danger", 
+    "light"
+);
+$spacers: (
+    0: 0,
+    1: $spacer * .25,
+    2: $spacer * .5,
+    3: $spacer,
+    4: $spacer * 1.25,
+    5: $spacer * 1.5,
+    6: $spacer * 1.875,
+    7: $spacer * 3.75
+);
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px
+);
+$grid-breakpoints: map-remove($grid-breakpoints,
+    "xxl"
+);
+$container-max-widths: (
+    sm: 540px,
+    md: 720px,
+    lg: 960px,
+    xl: 1140px
+);
+$container-max-widths: map-remove($container-max-widths,
+    "xxl"
+);
+$link-decoration:   none;
+
+@import "../bootstrap/scss/utilities";
+
+// 4. Include any optional Bootstrap components as you like
+@import "../bootstrap/scss/root";
+@import "../bootstrap/scss/reboot";
+@import "../bootstrap/scss/type";
+@import "../bootstrap/scss/images";
+@import "../bootstrap/scss/containers";
+@import "../bootstrap/scss/grid";
+@import "../bootstrap/scss/helpers";
+@import "../bootstrap/scss/nav";
+@import "../bootstrap/scss/navbar";
+@import "../bootstrap/scss/carousel";
+@import "../bootstrap/scss/transitions";
+// 5. Add additional custom code here
+.logo {
+    display: block;
+    background: url('../img/logo-all-dark.svg') no-repeat;
+    width: 220px;
+    height: 40px;
+    text-indent:101%; /* 首行縮排 */
+    overflow:hidden; /* 自動隱藏超出的文字或圖片 */
+    white-space:nowrap; /* 希望元素在第一排上面，沒有斷行 */
+}
+
+@import "../bootstrap/scss/utilities/api";

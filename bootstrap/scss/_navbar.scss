@@ -166,7 +166,7 @@
     &#{$infix} {
       @include media-breakpoint-up($next) {
         flex-wrap: nowrap;
-        justify-content: space-between;
+        justify-content: flex-start;
 
         .navbar-nav {
           flex-direction: row;
