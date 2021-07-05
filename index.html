@@ -6,39 +6,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sweetaste</title>
     <!-- <link rel="stylesheet" href="./css/bootstrap-grid.css"> -->
+    <link rel="stylesheet" href="./css/all.css">
     <link rel="stylesheet" href="./css/custom.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 </head>
 <body>
-    <header class="navbar navbar-expand-md fixed-top bg-white p-0">
+    <header class="navbar sticky-top bg-white my-4">
         <div class="container">
-            <h1 class="navbar-brand my-6 p-0">
+            <h1 class="navbar-brand py-2">
                 <a href="#" class="logo">Sweetaste</a>
             </h1>
-            <div class="collapse navbar-collapse flex-grow-0">
-                <ul class="navbar-nav">
-                    <li><a href="#" class="fw-bold p-6">首頁</a></li>
-                    <li><a href="#" class="fw-bold p-6">甜點</a></li>
-                    <li><a href="#" class="fw-bold p-6">登入</a></li>
-                    <li><a href="#" class="fw-bold p-6">
-                        <i class="fas fa-shopping-cart"></i>
-                    </a></li>
-                </ul>
-            </div>
+            <ul class="navbar-nav">
+                <li><a href="#" class="fw-bold px-6 py-2">首頁</a></li>
+                <li><a href="#" class="fw-bold px-6 py-2">甜點</a></li>
+                <li><a href="#" class="fw-bold px-6 py-2">登入</a></li>
+                <li><a href="#" class="fw-bold px-6 py-2">
+                    <i class="fas fa-shopping-cart"></i>
+                </a></li>
+            </ul>
         </div>
     </header>
 
     <div class="wrap">
-        <div class="container">
-            <div class="carousel slide">
-                <ul class="carousel-inner list-unstyled">
-                    <li><div class="carousel-item active">
-                        <img src="./img/lemoncake.jpg" class="d-block w-100" alt="lemon cake">
-                    </div></li>
+
+        <nav class="container">
+            <div class="carousel mb-7">
+                <ul class="carousel-inner">
+                    <li class="carousel-item active">
+                        <img src="./img/lemoncake.jpg" alt="lemon cake">
+                    </li>
+                    <li class="carousel-item">
+                        <img src="./img/walnutpie.jpg" alt="walnut pie">
+                    </li>
                 </ul>
+                <div class="col-10 position-absolute 
+                bottom-0 start-50 translate-middle-x">
+                    <ul class="menu row g-0">
+                        <li class="col" 
+                        style="background-image: url('./img/macaron.jpg');">
+                            <a href="#" class="fs-4 pt-8 pb-7">本日精選</a>
+                        </li>
+                        <li class="col" 
+                        style="background-image: url('./img/creampie.jpg');">
+                            <a href="#" class="fs-4 pt-8 pb-7">人氣推薦</a>
+                        </li>
+                        <li class="col" 
+                        style="background-image: url('./img/apricot.jpg');">
+                            <a href="#" class="fs-4 pt-8 pb-7">新品上市</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
+        </nav>
+
+        <section class="mb-7">
+
+        </section>
+
     </div>
 </body>
 </html>
