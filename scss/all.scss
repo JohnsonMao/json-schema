@@ -9,6 +9,8 @@ $primary:       #3F5D45;
 $secondary:     #8DA291;
 $info:          #FFE180;
 $dark:          #EAF0ED;
+
+$grid-gutter-width:           1.25rem;
 // 3. Include remainder of required Bootstrap stylesheets
 @import "../bootstrap/scss/variables";
 @import "../bootstrap/scss/mixins";
@@ -27,7 +29,8 @@ $spacers: (
     5: $spacer * 1.5,
     6: $spacer * 1.875,
     7: $spacer * 3.75,
-    8: $spacer * 4.25
+    8: $spacer * 4.25,
+    9: $spacer * 5
 );
 $grid-breakpoints: (
     xs: 0,
@@ -48,6 +51,7 @@ $container-max-widths: map-remove($container-max-widths,
     "xl",
     "xxl"
 );
+
 $link-decoration:   none;
 
 @import "../bootstrap/scss/utilities";
