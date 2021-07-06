@@ -10,7 +10,7 @@ $secondary:     #8DA291;
 $info:          #FFE180;
 $dark:          #EAF0ED;
 
-$grid-gutter-width:           1.25rem;
+$grid-gutter-width: 1.25rem;
 // 3. Include remainder of required Bootstrap stylesheets
 @import "../bootstrap/scss/variables";
 @import "../bootstrap/scss/mixins";
@@ -22,8 +22,8 @@ $theme-colors: map-remove($theme-colors,
 );
 $spacers: (
     0: 0,
-    1: $spacer * .25,
-    2: $spacer * .5,
+    1: $spacer * .5,
+    2: $spacer * .6.25,
     3: $spacer,
     4: $spacer * 1.25,
     5: $spacer * 1.5,
@@ -50,7 +50,7 @@ $container-max-widths: (
 $container-max-widths: map-remove($container-max-widths,
     "xl",
     "xxl"
-);
+); 
 
 $link-decoration:   none;
 

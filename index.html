@@ -14,10 +14,18 @@
 <body>
     <header class="navbar sticky-top bg-white">
         <div class="container">
+            <button class="btn">
+                =
+            </button>
             <h1 class="navbar-brand py-6">
                 <a href="#" class="logo logo-all">Sweetaste</a>
             </h1>
-            <ul class="navbar-nav">
+            <ul class="">
+                <li><a href="#" class="fw-bold p-6">
+                    <i class="fas fa-shopping-cart"></i>
+                </a></li>
+            </ul>
+            <ul class="navbar-nav d-none">
                 <li><a href="#" class="fw-bold p-6">首頁</a></li>
                 <li><a href="#" class="fw-bold p-6">甜點</a></li>
                 <li><a href="#" class="fw-bold p-6">登入</a></li>
@@ -30,8 +38,8 @@
 
     <div class="wrap">
 
-    <section class="container mb-9">
-        <div class="carousel">
+    <section class="container-md px-0 px-md-1 mb-md-9 md-0">
+        <div class="carousel row g-0">
             <ul class="carousel-inner">
                 <li class="carousel-item active">
                     <img src="./img/lemoncake.jpg" alt="lemon cake">
@@ -40,7 +48,7 @@
                     <img src="./img/walnutpie.jpg" alt="walnut pie">
                 </li>
             </ul>
-            <nav class="col-10 position-absolute 
+            <nav class="col-lg-10 position-absolute 
             bottom-0 start-50 translate-middle-x">
                 <ul class="menu row g-0">
                     <li class="col" 
@@ -60,21 +68,22 @@
         </div>
     </section>
 
-    <section class="mb-9">
+    <section class="mb-md-9 mb-0">
         <ul class="article">
-            <li class="bg-dark">
-                <div class="container">
-                    <div class="row">
-                        <div class="article-title text-primary col-2 order-1">
-                            <h3 class="fs-1 fw-bold">為什麼——
+            <li>
+                <div class="container-md px-0 px-md-1">
+                    <div class="row g-0 gx-md-4">
+                        <div class="article-md-title 
+                        text-primary col-md-2 order-md-1 py-6 py-md-0">
+                            <h3 class="fs-1 fw-bold m-0">為什麼——
                                 <br/>選擇了做甜點？</h3>
                         </div>
-                        <div class="article-img col-6">
-                            <div class="ratio ratio-1x1">
+                        <div class="article-img col-md-6">
+                            <div class="ratio ratio-md-1x1 ratio-3x2">
                                 <img src="./img/pancake.jpg" alt="pan cake">
                             </div>
                         </div>
-                        <div class="article-text lh-lg text-secondary col-4">
+                        <div class="article-text lh-lg text-secondary col-md-4">
                             <p>
                                 做甜食是調節心情的一種方式，
                                 在做甜食的過程中聞著甜甜的味道，
@@ -89,19 +98,20 @@
                     </div>
                 </div>
             </li>
-            <li class="bg-dark mb-9">
-                <div class="container">
-                    <div class="row">
-                        <div class="article-title text-primary col-2 order-1">
-                            <h3 class="fs-1 fw-bold">為什麼——
+            <li>
+                <div class="container-md px-0 px-md-2">
+                    <div class="row g-0 gx-md-4">
+                        <div class="article-md-title 
+                        text-primary col-md-2 order-md-1 py-6 py-md-0">
+                            <h3 class="fs-1 fw-bold m-0">為什麼——
                                 <br/>一定要吃甜點？</h3>
                         </div>
-                        <div class="article-img col-6 order-2">
-                            <div class="ratio ratio-1x1">
+                        <div class="article-img col-md-6 order-md-2">
+                            <div class="ratio ratio-md-1x1 ratio-3x2">
                                 <img src="./img/oat.jpg" alt="pan cake">
                             </div>
                         </div>
-                        <div class="article-text lh-lg text-secondary col-4">
+                        <div class="article-text lh-lg text-secondary col-md-4">
                             <p>
                                 因為吃甜點可以讓人心情變好，
                                 各種各樣的甜點每一口下去都能感覺甜甜蜜蜜！
@@ -120,15 +130,16 @@
     </section>
 
     <section class="container mb-7">
-        <div class="article-title w-100 
-        d-flex align-items-center text-primary mb-7">
-            <h3 class="fs-1 fw-bold">想吃甜點——
+        <div class="article-md-title w-100 
+        d-flex justify-content-center align-items-center 
+        text-primary mb-0 mb-md-6 py-6 py-md-0">
+            <h3 class="fs-1 fw-bold m-0">想吃甜點——
                 <br/>是不需要理由的。</h3>
         </div>
-        <ul class="row row-cols-3">
+        <ul class="row">
             <li class="col">
                 <div class="card">
-                    <div class="ratio ratio-300x315">
+                    <div class="ratio ratio-20x21">
                         <img src="./img/donuts.jpg" alt="dounts">
                     </div>
                     <div class="card-body row g-0">
@@ -142,9 +153,9 @@
                     <a href="#" class="btn btn-dark fs-4 fw-bold py-3">加入購物車</a>
                 </div>
             </li>
-            <li class="col">
+            <li class="col d-none d-md-block">
                 <div class="card">
-                    <div class="ratio ratio-300x315">
+                    <div class="ratio ratio-20x21">
                         <img src="./img/cherrycake.jpg" alt="cherry cake">
                     </div>
                     <div class="card-body row g-0">
@@ -158,9 +169,9 @@
                     <a href="#" class="btn btn-dark fs-4 fw-bold py-3">加入購物車</a>
                 </div>
             </li>
-            <li class="col">
+            <li class="col d-none d-lg-block">
                 <div class="card">
-                    <div class="ratio ratio-300x315">
+                    <div class="ratio ratio-20x21">
                         <img src="./img/blueberry.jpg" alt="blueberry">
                     </div>
                     <div class="card-body row g-0">
@@ -180,20 +191,20 @@
     <section class="bg-primary">
         <div class="container">
             <div class="row justify-content-center align-items-center">
-                <div class="col-5 d-flex align-items-center">
+                <div class="col-lg-5 col-md-6 d-flex align-items-center">
                     <h2 class="py-6 pe-4">
                         <a href="#" class="logo logo-white">Sweetaste</a>
                     </h2>
                     <h3 class="text-dark fs-4">訂閱你我的甜蜜郵件</h3>
                 </div>
-                <div class="col-5">
+                <div class="col-lg-5 col-md-6">
                     <div class="input-group py-6">
                         <label for="contact" class="text-primary bg-dark 
                         fs-4 px-4 py-3">
                             <i class="fas fa-envelope"></i>
                         </label>
                         <input type="email" id="contact" class="input-enter 
-                        border-0 fs-5 bg-dark p-0"
+                        fs-5 bg-dark p-0"
                         placeholder="example@email.com">
                         <button class="btn btn-info fs-5 px-5">
                             <i class="fas fa-arrow-right"></i>
@@ -230,7 +241,7 @@
                 <div class="col-10 
                 d-flex justify-content-between align-items-center mb-6">
                     <ul class="d-flex">
-                        <li><a href="#" class="fs-2 me-2">
+                        <li><a href="#" class="fs-2 me-1">
                             <i class="fab fa-facebook-square"></i>
                         </a></li>
                         <li><a href="#" class="fs-2">

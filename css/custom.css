@@ -157,17 +157,50 @@ ul {
   background: rgba(255, 225, 128, 0.8);
 }
 
-.article li {
-  height: 420px;
+@media (min-width: 768px) {
+  .article li {
+    background: #EAF0ED;
+    height: 300px;
+  }
 }
 
-.article li + li {
-  margin-top: 105px;
+@media (min-width: 992px) {
+  .article li {
+    height: 420px;
+  }
 }
 
-.article-img {
-  -webkit-transform: translateY(-1.25rem);
-          transform: translateY(-1.25rem);
+@media (min-width: 768px) {
+  .article li + li {
+    margin-top: 105px;
+  }
+}
+
+@media (min-width: 768px) {
+  .article-img {
+    -webkit-transform: translateY(-1.25rem);
+            transform: translateY(-1.25rem);
+  }
+}
+
+.article-md-title {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .article-md-title {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+    text-align: start;
+    -webkit-writing-mode: vertical-rl;
+        -ms-writing-mode: tb-rl;
+            writing-mode: vertical-rl;
+    text-indent: -1.25em;
+  }
 }
 
 .article-title {
@@ -178,11 +211,32 @@ ul {
 }
 
 .article-text {
-  padding: 70px 0;
-  height: 420px;
-  -webkit-writing-mode: vertical-rl;
-      -ms-writing-mode: tb-rl;
-          writing-mode: vertical-rl;
+  padding: 30px;
+  background: #EAF0ED;
+}
+
+@media (min-width: 768px) {
+  .article-text {
+    padding-left: 0;
+    padding-right: 0;
+    height: 300px;
+    background: transparent;
+    -webkit-writing-mode: vertical-rl;
+        -ms-writing-mode: tb-rl;
+            writing-mode: vertical-rl;
+  }
+}
+
+@media (min-width: 992px) {
+  .article-text {
+    padding-top: 70px;
+    padding-bottom: 70px;
+    height: 420px;
+    background: transparent;
+    -webkit-writing-mode: vertical-rl;
+        -ms-writing-mode: tb-rl;
+            writing-mode: vertical-rl;
+  }
 }
 
 .ratio {
@@ -206,12 +260,18 @@ ul {
      object-fit: cover;
 }
 
-.ratio-1x1 {
-  --bs-aspect-ratio: 100%;
+.ratio-20x21 {
+  --bs-aspect-ratio: calc(21 / 20 * 100%);
 }
 
-.ratio-300x315 {
-  --bs-aspect-ratio: calc(315 / 300 * 100%);
+.ratio-3x2 {
+  --bs-aspect-ratio: calc(2 / 3 * 100%);
+}
+
+@media (min-width: 768px) {
+  .ratio-md-1x1 {
+    --bs-aspect-ratio: 100%;
+  }
 }
 
 .card {
@@ -236,7 +296,8 @@ ul {
 
 .card-text {
   margin: 0;
-  padding: 18px 0;
+  padding-top: 18px;
+  padding-bottom: 18px;
   text-align: center;
   line-height: 1;
 }
@@ -281,6 +342,7 @@ ul {
   -webkit-box-flex: 1;
       -ms-flex: 1 0 0px;
           flex: 1 0 0;
+  border: none;
 }
 
 .input-enter:focus {
