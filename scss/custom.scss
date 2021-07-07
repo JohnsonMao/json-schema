@@ -6,7 +6,7 @@ $secondary:     #8DA291;
 $info:          #FFE180;
 $dark:          #EAF0ED;
 
-$grid-gutter-width: 1.25rem;
+$grid-gutter-width: 3.75rem;
 // 3. Include remainder of required Bootstrap stylesheets
 @import "../bootstrap/scss/variables";
 @import "../bootstrap/scss/mixins";
@@ -68,7 +68,7 @@ ul {
     justify-content: space-between;
     align-items: center;
 
-    .container {
+    > * {
         display: flex;
         justify-content: space-between;
         align-items: center;

@@ -11,13 +11,13 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <!-- logo -->
-    <link rel="bookmark" href="favicon.ico"/>
+    <link rel="bookmark" href="./favicon.ico"/>
 </head>
 <body>
     <header class="navbar sticky-top bg-white">
         <div class="container">
-            <button class="btn d-md-none">
-                =
+            <button class="btn d-md-none text-primary">
+                <i class="fas fa-bars"></i>
             </button>
             <h1 class="navbar-brand py-6">
                 <a href="#" class="logo logo-all">Sweetaste</a>
@@ -40,7 +40,7 @@
 
     <div class="wrap">
 
-    <section class="container-md px-0 px-md-1 mb-md-9 md-0">
+    <section class="container-md px-0 px-md-1 mb-md-9 mb-0">
         <div class="carousel row g-0">
             <ul class="carousel-inner">
                 <li class="carousel-item active">
@@ -55,15 +55,15 @@
                 <ul class="menu row g-0">
                     <li class="col" 
                     style="background-image: url('./img/macaron.jpg');">
-                        <a href="#" class="fs-4 pt-8 pb-7">本日精選</a>
+                        <a href="#" class="fs-4 pt-md-8 pb-md-7 pt-6 pb-4">本日精選</a>
                     </li>
                     <li class="col" 
                     style="background-image: url('./img/creampie.jpg');">
-                        <a href="#" class="fs-4 pt-8 pb-7">人氣推薦</a>
+                        <a href="#" class="fs-4 pt-md-8 pb-md-7 pt-6 pb-4">人氣推薦</a>
                     </li>
                     <li class="col" 
                     style="background-image: url('./img/apricot.jpg');">
-                        <a href="#" class="fs-4 pt-8 pb-7">新品上市</a>
+                        <a href="#" class="fs-4 pt-md-8 pb-md-7 pt-6 pb-4">新品上市</a>
                     </li>
                 </ul>
             </nav>
@@ -92,7 +92,7 @@
                                 心情會不由自主的越來越好，
                                 就像有人在安撫你暴躁不安的情緒一樣，很舒心！
                             </p>
-                            <p>
+                            <p class="d-md-none d-lg-block">
                                 喜歡烘焙，其實是喜歡看著成品出來的那種成就感，
                                 其次是烘焙的過程有助於釋放壓力！滿足自我！
                             </p>
@@ -120,7 +120,7 @@
                                 而且造型多樣又漂亮，
                                 可以讓每個吃的人都幸福滿滿！
                             </p>
-                            <p>
+                            <p class="d-md-none d-lg-block">
                                 工作一天下來的疲憊，壓力太大時，
                                 吃一口甜點補充糖分，就能讓大腦恢復元氣！
                             </p>
@@ -202,15 +202,15 @@
                     <h3 class="text-dark fs-4">訂閱你我的甜蜜郵件</h3>
                 </div>
                 <div class="col-lg-5">
-                    <div class="input-group">
+                    <div class="d-flex">
                         <label for="contact" class="text-primary bg-dark 
                         fs-4 px-4 py-3">
                             <i class="fas fa-envelope"></i>
                         </label>
-                        <input type="email" id="contact" class="flex-fill 
+                        <input type="email" id="contact" class="flex-fill w-50 
                         border-0 fs-5 bg-dark p-3"
                         placeholder="example@email.com">
-                        <button class="btn btn-info fs-5 px-5">
+                        <button class="btn btn-info fs-5 px-5 py-3">
                             <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
@@ -224,7 +224,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-10 d-flex justify-content-between mb-6 pt-6">
                     <div class="d-flex flex-column justify-content-between">
-                        <h2>
+                        <h2 class="mb-6">
                             <a href="#" class="logo logo-text">Sweetaste</a>
                         </h2>
                         <ul>
@@ -236,19 +236,19 @@
                                 800 高雄市新興區幸福路 520 號</h4></li>
                         </ul>
                     </div>
-                    <div class="article-title pt-4">
+                    <div class="article-title pt-4 d-none d-md-block">
                         <h3 class="text-primary fs-4 fw-bold m-0">今天是個——
                             <br/>吃甜點的好日子。
                         </h3>
                     </div>
                 </div>
-                <div class="col-10 
-                d-flex justify-content-between align-items-center mb-6">
-                    <ul class="d-flex">
-                        <li><a href="#" class="fs-2 me-1">
+                <div class="col-lg-10 d-block 
+                d-md-flex justify-content-between align-items-center">
+                    <ul class="d-flex mb-4">
+                        <li><a href="#" class="fs-1 me-1">
                             <i class="fab fa-facebook-square"></i>
                         </a></li>
-                        <li><a href="#" class="fs-2">
+                        <li><a href="#" class="fs-1">
                             <i class="fab fa-line"></i>
                         </a></li>
                     </ul>

@@ -26,7 +26,7 @@ ul {
           align-items: center;
 }
 
-.navbar .container {
+.navbar > * {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
