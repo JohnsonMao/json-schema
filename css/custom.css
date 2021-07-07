@@ -337,15 +337,4 @@ ul {
       flex-wrap: wrap;
   width: 100%;
 }
-
-.input-enter {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 0 0px;
-          flex: 1 0 0;
-  border: none;
-}
-
-.input-enter:focus {
-  outline: none;
-}
 /*# sourceMappingURL=custom.css.map */
