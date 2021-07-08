@@ -6,7 +6,8 @@ $secondary:     #8DA291;
 $info:          #FFE180;
 $dark:          #EAF0ED;
 
-$grid-gutter-width: 3.75rem;
+$grid-gutter-width:     1.25rem;
+$container-padding-x:   30px;
 // 3. Include remainder of required Bootstrap stylesheets
 @import "../bootstrap/scss/variables";
 @import "../bootstrap/scss/mixins";
@@ -19,7 +20,7 @@ $theme-colors: map-remove($theme-colors,
 $spacers: (
     0: 0,
     1: $spacer * .5,
-    2: $spacer * .6.25,
+    2: $spacer * .75,
     3: $spacer,
     4: $spacer * 1.25,
     5: $spacer * 1.5,
@@ -28,20 +29,21 @@ $spacers: (
     8: $spacer * 4.25,
     9: $spacer * 5
 );
+$gutters: $spacers;
 $grid-breakpoints: (
     xs: 0,
     sm: 576px,
     md: 768px,
-    lg: 992px
+    lg: 1024px
 );
 $grid-breakpoints: map-remove($grid-breakpoints,
     "xl",
     "xxl"
 );
 $container-max-widths: (
-    sm: 540px,
+    sm: 375px,
     md: 720px,
-    lg: 960px
+    lg: 1000px
 );
 $container-max-widths: map-remove($container-max-widths,
     "xl",
@@ -108,7 +110,16 @@ ul {
 }
 .carousel {
     position: relative;
-    height: calc(100vh - 56px);
+    height: calc(75vh - 56px);
+
+    .carousel-inner {
+        height: 100%;
+    }
+
+    &-index {
+        position: relative;
+        height: calc(100vh - 56px);
+    }
 }
 .carousel-inner {
     position: relative;
@@ -170,7 +181,7 @@ ul {
     li{
         @include media-breakpoint-up(md){
             background: $dark;
-            height: 300px;
+            height: 280px;
         }
         @include media-breakpoint-up(lg){
             height: 420px;
@@ -208,9 +219,9 @@ ul {
         padding: 30px;
         background: $dark;
         @include media-breakpoint-up(md){
-            padding-left: 0;
-            padding-right: 0;
-            height: 300px;
+            padding-left: 10px;
+            padding-right: 10px;
+            height: 280px;
             background: transparent;
             writing-mode: vertical-rl;
         }
@@ -292,11 +303,28 @@ ul {
     color: $primary;
     background-color: $dark;
     border-color: $dark;
+
+    &:hover {
+        background-color: darken($dark, 10);
+    }
 }
 .btn-info {
     color: $primary;
     background-color: $info;
     border-color: $info;
+
+    &:hover {
+        background-color: darken($info, 10);
+    }
+}
+.btn-outline-dark {
+    color: $primary;
+    background-color: #fff;
+    border-color: $dark;
+
+    &:hover {
+        background-color: $dark;
+    }
 }
 .input-group {
     position: relative;
@@ -304,3 +332,64 @@ ul {
     flex-wrap: wrap;
     width: 100%;
 }
+.pagination {
+    display: flex;
+    list-style: none;
+
+    li + li {
+        margin-left: -1px;
+    }
+
+    .active{
+        .page-link{
+            background: $primary;
+            color: $dark;
+        }
+    }
+}
+.page-link {
+    position: relative;
+    display: block;
+    color: $primary;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid $dark;
+
+    &:hover {
+        background-color: $dark;
+    }
+}
+.badge {
+    display: inline-block;
+    padding: 10px;
+    font-size: 16px;
+    line-height: 1;
+    color: $dark;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+}
+.text-vertical {
+    writing-mode: vertical-rl;
+}
+.letter-base {
+    letter-spacing: .25rem;
+}
+// .shake-hover {
+
+// }
+// @keyframes shake {
+//     0 {
+
+//     }
+//     10%,
+//     20%,
+//     30%,
+//     40%,
+//     50%,
+//     60%,
+//     70%,
+//     80%,
+//     90%,
+//     100%
+// }

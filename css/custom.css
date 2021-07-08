@@ -84,6 +84,15 @@ ul {
 
 .carousel {
   position: relative;
+  height: calc(75vh - 56px);
+}
+
+.carousel .carousel-inner {
+  height: 100%;
+}
+
+.carousel-index {
+  position: relative;
   height: calc(100vh - 56px);
 }
 
@@ -160,11 +169,11 @@ ul {
 @media (min-width: 768px) {
   .article li {
     background: #EAF0ED;
-    height: 300px;
+    height: 280px;
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1024px) {
   .article li {
     height: 420px;
   }
@@ -217,9 +226,9 @@ ul {
 
 @media (min-width: 768px) {
   .article-text {
-    padding-left: 0;
-    padding-right: 0;
-    height: 300px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 280px;
     background: transparent;
     -webkit-writing-mode: vertical-rl;
         -ms-writing-mode: tb-rl;
@@ -227,7 +236,7 @@ ul {
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1024px) {
   .article-text {
     padding-top: 70px;
     padding-bottom: 70px;
@@ -322,10 +331,28 @@ ul {
   border-color: #EAF0ED;
 }
 
+.btn-dark:hover {
+  background-color: #ccdbd4;
+}
+
 .btn-info {
   color: #3F5D45;
   background-color: #FFE180;
   border-color: #FFE180;
+}
+
+.btn-info:hover {
+  background-color: #ffd54d;
+}
+
+.btn-outline-dark {
+  color: #3F5D45;
+  background-color: #fff;
+  border-color: #EAF0ED;
+}
+
+.btn-outline-dark:hover {
+  background-color: #EAF0ED;
 }
 
 .input-group {
@@ -336,5 +363,55 @@ ul {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   width: 100%;
+}
+
+.pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+}
+
+.pagination li + li {
+  margin-left: -1px;
+}
+
+.pagination .active .page-link {
+  background: #3F5D45;
+  color: #EAF0ED;
+}
+
+.page-link {
+  position: relative;
+  display: block;
+  color: #3F5D45;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #EAF0ED;
+}
+
+.page-link:hover {
+  background-color: #EAF0ED;
+}
+
+.badge {
+  display: inline-block;
+  padding: 10px;
+  font-size: 16px;
+  line-height: 1;
+  color: #EAF0ED;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+
+.text-vertical {
+  -webkit-writing-mode: vertical-rl;
+      -ms-writing-mode: tb-rl;
+          writing-mode: vertical-rl;
+}
+
+.letter-base {
+  letter-spacing: .25rem;
 }
 /*# sourceMappingURL=custom.css.map */
