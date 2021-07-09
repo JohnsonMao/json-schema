@@ -5,6 +5,22 @@ ul {
   list-style: none;
 }
 
+input::-webkit-input-placeholder {
+  color: #8DA291;
+}
+
+input:-ms-input-placeholder {
+  color: #8DA291;
+}
+
+input::-ms-input-placeholder {
+  color: #8DA291;
+}
+
+input::placeholder {
+  color: #8DA291;
+}
+
 .sticky-top {
   position: -webkit-sticky;
   position: sticky;

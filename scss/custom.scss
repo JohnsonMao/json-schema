@@ -58,6 +58,9 @@ ul {
     padding: 0;
     list-style: none;
 }
+input::placeholder{
+    color: $secondary;
+}
 .sticky-top {
     position: sticky;
     top: 0;

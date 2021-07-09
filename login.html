@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweetaste</title>
+    <!-- <link rel="stylesheet" href="./css/bootstrap-grid.css"> -->
+    <link rel="stylesheet" href="./css/all.css">
+    <link rel="stylesheet" href="./css/custom.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <!-- logo -->
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+
+</head>
+<body>
+    <header class="navbar sticky-top bg-white">
+        <div class="container">
+            <button class="btn d-md-none text-primary">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h1 class="navbar-brand py-6">
+                <a href="#" class="logo logo-all">Sweetaste</a>
+            </h1>
+            <ul class="d-flex d-md-none">
+                <li><a href="#" class="fw-bold p-6">
+                    <i class="fas fa-shopping-cart"></i>
+                </a></li>
+            </ul>
+            <ul class="navbar-nav d-none d-md-flex">
+                <li><a href="#" class="fw-bold p-6">首頁</a></li>
+                <li><a href="#" class="fw-bold p-6">甜點</a></li>
+                <li><a href="#" class="fw-bold p-6">登入</a></li>
+                <li><a href="#" class="fw-bold p-6">
+                    <i class="fas fa-shopping-cart"></i>
+                </a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="wrap">
+
+    <div class="container-md mt-md-6 mb-md-7 px-0 px-md-6">
+        <div class="row g-0 justify-content-center">
+            <div class="col-md-5">
+                <form action="">
+                    <h2 class="bg-primary text-center text-dark fs-2 fw-bold pb-md-0 py-6 m-0">會員登入</h2>
+                    <ul class="row g-0 d-md-none bg-dark p-6">
+                        <li class="col-4"><a href="#" class="btn btn-outline-dark w-100 h-100 py-2"><img src="./img/fb.svg" alt="facebook"></a></li>
+                        <li class="col-4"><a href="#" class="btn btn-outline-dark w-100 h-100 py-2"><img src="./img/google.svg" alt="google"></a></li>
+                        <li class="col-4"><a href="#" class="btn btn-outline-dark w-100 h-100 py-2"><img src="./img/yahoo.svg" alt="yahoo"></a></li>
+                    </ul>
+                    <div class="bg-primary p-6">
+                        <div class="input-group mb-3">
+                            <label for="user" class="bg-dark px-4 py-3"><i class="fas fa-user-alt"></i></label>
+                            <input type="text" id="user" class="flex-fill bg-dark border-0 py-3" placeholder="電子信箱/手機號碼">
+                        </div>
+                        <div class="input-group mb-3">
+                            <label for="password" class="bg-dark px-4 py-3"><i class="fas fa-key"></i></label>
+                            <input type="password" id="password" class="flex-fill bg-dark border-0 py-3" placeholder="請輸入使用者密碼">
+                        </div>
+                        <input type="checkbox" name="remember" id="remember">
+                        <label for="remember" class="text-dark">記住我</label>
+                    </div>
+                    <button class="btn btn-info w-100 fs-4 fw-bold py-3">登入帳號</button>
+                </form>
+            </div>
+            <div class="col-md-5 my-3 d-none d-md-block">
+                <div class="bg-dark h-100 text-center">
+                    <h3 class="text-secondary fs-4 m-0 p-6 pb-md-0">—— 連結社群帳號 ——</h3>
+                    <ul class="m-6">
+                        <li><a href="#" class="btn btn-outline-dark w-100 mb-3 py-3"><img src="./img/fb.svg" alt="facebook" width="100px" height="20px"></a></li>
+                        <li><a href="#" class="btn btn-outline-dark w-100 mb-3 py-2"><img src="./img/google.svg" alt="google" width="100px" height="28px"></a></li>
+                        <li><a href="#" class="btn btn-outline-dark w-100 mb-3 py-3"><img src="./img/yahoo.svg" alt="yahoo" width="100px" height="20px"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="bg-primary">
+        <div class="container">
+            <div class="row justify-content-center align-items-center py-6">
+                <div class="col-lg-5 d-flex 
+                justify-content-center justify-content-lg-start align-items-center 
+                mb-6 mb-lg-0">
+                    <h2 class="pe-4">
+                        <a href="#" class="logo logo-white">Sweetaste</a>
+                    </h2>
+                    <h3 class="text-dark fs-4">訂閱你我的甜蜜郵件</h3>
+                </div>
+                <div class="col-lg-5">
+                    <div class="input-group">
+                        <label for="contact" class="text-primary bg-dark 
+                        fs-4 px-4 py-3">
+                            <i class="fas fa-envelope"></i>
+                        </label>
+                        <input type="email" id="contact" class="flex-fill w-50 
+                        border-0 fs-5 bg-dark py-3"
+                        placeholder="example@email.com">
+                        <button class="btn btn-info fs-5 px-5 py-3">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 d-flex justify-content-between mb-6 pt-6">
+                    <div class="d-flex flex-column justify-content-between">
+                        <h2 class="mb-6">
+                            <a href="#" class="logo logo-text">Sweetaste</a>
+                        </h2>
+                        <ul>
+                            <li><a href="tel:+886-7-12345678">
+                                07-1234-5678</a></li>
+                            <li><a href="mailto:sweetaste@email.com">
+                                sweetaste@email.com</a></li>
+                            <li><h4 class="text-primary fs-6 m-0">
+                                800 高雄市新興區幸福路 520 號</h4></li>
+                        </ul>
+                    </div>
+                    <div class="article-title pt-4 d-none d-md-block">
+                        <h3 class="text-primary fs-4 fw-bold m-0">今天是個——
+                            <br/>吃甜點的好日子。
+                        </h3>
+                    </div>
+                </div>
+                <div class="col-lg-10 d-block 
+                d-md-flex justify-content-between align-items-center">
+                    <ul class="d-flex mb-4">
+                        <li><a href="#" class="fs-1 me-1">
+                            <i class="fab fa-facebook-square"></i>
+                        </a></li>
+                        <li><a href="#" class="fs-1">
+                            <i class="fab fa-line"></i>
+                        </a></li>
+                    </ul>
+                    <p class="text-primary m-0">
+                        &copy; 2018 Sweetaste* All Rights Reserved
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    </div>
+</body>
+</html>
