@@ -58,7 +58,16 @@ ul {
     padding: 0;
     list-style: none;
 }
-input::placeholder{
+input {
+    border: 1px solid $dark;
+
+    &:focus{
+        outline: none;
+        border: 1px solid darken($dark, 10);
+        z-index: 3;
+    }
+}
+input::placeholder {
     color: $secondary;
 }
 .sticky-top {
@@ -95,18 +104,21 @@ input::placeholder{
 
     &-all{
         background: url('../img/logo-all-dark.svg') no-repeat;
+        background-position: center;
         width: 220px;
         height: 40px;
     }
 
     &-white{
         background: url('../img/logo-white.svg') no-repeat;
+        background-position: center;
         width: 40px;
         height: 40px;
     }
 
     &-text{
         background: url('../img/logo-text.svg') no-repeat;
+        background-position: center;
         width: 170px;
         height: 40px;
     }
@@ -263,6 +275,9 @@ input::placeholder{
 .ratio-3x2 {
     --bs-aspect-ratio: calc(2 / 3 * 100%);
 }
+.ratio-1x1 {
+    --bs-aspect-ratio: 100%;
+}
 .ratio-md-1x1 {
     @include media-breakpoint-up(md){
         --bs-aspect-ratio: 100%;
@@ -377,6 +392,9 @@ input::placeholder{
 }
 .letter-base {
     letter-spacing: .25rem;
+}
+.overlapping-end{
+    margin-right: -1px;
 }
 // .shake-hover {
 

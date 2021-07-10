@@ -42,43 +42,60 @@
 
     <div class="wrap">
 
-    <div class="container-md mt-md-6 mb-md-7 px-0 px-md-6">
-        <div class="row g-0 justify-content-center">
-            <div class="col-md-5">
-                <form action="">
-                    <h2 class="bg-primary text-center text-dark fs-2 fw-bold pb-md-0 py-6 m-0">會員登入</h2>
-                    <ul class="row g-0 d-md-none bg-dark p-6">
-                        <li class="col-4"><a href="#" class="btn btn-outline-dark w-100 h-100 py-2"><img src="./img/fb.svg" alt="facebook"></a></li>
-                        <li class="col-4"><a href="#" class="btn btn-outline-dark w-100 h-100 py-2"><img src="./img/google.svg" alt="google"></a></li>
-                        <li class="col-4"><a href="#" class="btn btn-outline-dark w-100 h-100 py-2"><img src="./img/yahoo.svg" alt="yahoo"></a></li>
-                    </ul>
-                    <div class="bg-primary p-6">
-                        <div class="input-group mb-3">
-                            <label for="user" class="bg-dark px-4 py-3"><i class="fas fa-user-alt"></i></label>
-                            <input type="text" id="user" class="flex-fill bg-dark border-0 py-3" placeholder="電子信箱/手機號碼">
-                        </div>
-                        <div class="input-group mb-3">
-                            <label for="password" class="bg-dark px-4 py-3"><i class="fas fa-key"></i></label>
-                            <input type="password" id="password" class="flex-fill bg-dark border-0 py-3" placeholder="請輸入使用者密碼">
-                        </div>
-                        <input type="checkbox" name="remember" id="remember">
-                        <label for="remember" class="text-dark">記住我</label>
-                    </div>
-                    <button class="btn btn-info w-100 fs-4 fw-bold py-3">登入帳號</button>
-                </form>
-            </div>
-            <div class="col-md-5 my-3 d-none d-md-block">
-                <div class="bg-dark h-100 text-center">
-                    <h3 class="text-secondary fs-4 m-0 p-6 pb-md-0">—— 連結社群帳號 ——</h3>
-                    <ul class="m-6">
-                        <li><a href="#" class="btn btn-outline-dark w-100 mb-3 py-3"><img src="./img/fb.svg" alt="facebook" width="100px" height="20px"></a></li>
-                        <li><a href="#" class="btn btn-outline-dark w-100 mb-3 py-2"><img src="./img/google.svg" alt="google" width="100px" height="28px"></a></li>
-                        <li><a href="#" class="btn btn-outline-dark w-100 mb-3 py-3"><img src="./img/yahoo.svg" alt="yahoo" width="100px" height="20px"></a></li>
+    <section class="container-md my-6">
+        <div class="row">
+            <div class="col-8">
+                <div class="text-primary">
+                    <h2 class="bg-dark fs-4 text-center fw-bold m-0 py-3">您的購物車</h2>
+                    <ul class="my-6">
+                        <li class="card row g-0 flex-row align-items-center">
+                            <div class="col-2">
+                                <div class="ratio ratio-1x1">
+                                    <img src="./img/strawberrycake.jpg" alt="strawberry cake">
+                                </div>
+                            </div>
+                            <div class="col d-flex justify-content-center">
+                                <div>
+                                    <h2 class="fs-5 m-0 mb-1">草莓蛋糕</h2>
+                                    <p class="fs-6 m-0">NT$ 480</p>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group row g-0">
+                                    <div class="col-4 overlapping-end">
+                                        <button class="btn btn-outline-dark w-100 lh-1 py-3">-</button>
+                                    </div>
+                                    <div class="col-4 overlapping-end">
+                                        <input type="text" class="w-100 h-100 rounded-0 text-center" value="1">
+                                    </div>
+                                    <div class="col-4">
+                                        <button class="btn btn-outline-dark w-100 lh-1 py-3">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col text-center">
+                                <p class="fs-6 m-0">NT$ 480</p>
+                            </div>
+                            <div class="col-auto">
+                                <button class="btn text-secondary">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
+            <div class="col-4">
+                <div class="bg-primary text-dark px-4">
+                    <h2 class="border-bottom border-dark text-center fs-4 fe-bold m-0 py-3">訂單摘要</h2>
+                    <div class="d-flex">
+                        <p>小計</p>
+                        <p>NT$ 2,700</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
     <section class="bg-primary">
         <div class="container">
