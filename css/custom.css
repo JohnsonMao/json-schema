@@ -306,10 +306,6 @@ input::placeholder {
   --bs-aspect-ratio: calc(2 / 3 * 100%);
 }
 
-.ratio-1x1 {
-  --bs-aspect-ratio: 100%;
-}
-
 @media (min-width: 768px) {
   .ratio-md-1x1 {
     --bs-aspect-ratio: 100%;
@@ -450,5 +446,29 @@ input::placeholder {
 
 .overlapping-end {
   margin-right: -1px;
+}
+
+@media (min-width: 1024px) {
+  .border-lg-0 {
+    border: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .bg-md-primary {
+    background-color: #3F5D45;
+  }
+}
+
+@media (min-width: 768px) {
+  .bg-md-transparent {
+    background-color: transparent !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .text-md-dark {
+    color: #EAF0ED !important;
+  }
 }
 /*# sourceMappingURL=custom.css.map */

@@ -275,9 +275,6 @@ input::placeholder {
 .ratio-3x2 {
     --bs-aspect-ratio: calc(2 / 3 * 100%);
 }
-.ratio-1x1 {
-    --bs-aspect-ratio: 100%;
-}
 .ratio-md-1x1 {
     @include media-breakpoint-up(md){
         --bs-aspect-ratio: 100%;
@@ -393,9 +390,30 @@ input::placeholder {
 .letter-base {
     letter-spacing: .25rem;
 }
-.overlapping-end{
+.overlapping-end {
     margin-right: -1px;
 }
+.border-lg-0 {
+    @include media-breakpoint-up(lg) {
+        border: none !important;
+    }
+}
+.bg-md-primary {
+    @include media-breakpoint-up(md) {
+        background-color: $primary;
+    }
+}
+.bg-md-transparent {
+    @include media-breakpoint-up(md) {
+        background-color: transparent !important;
+    }
+}
+.text-md-dark {
+    @include media-breakpoint-up(md) {
+        color: $dark !important;
+    }
+}
+
 // .shake-hover {
 
 // }
