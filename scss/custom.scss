@@ -413,7 +413,34 @@ input::placeholder {
         color: $dark !important;
     }
 }
+.circle-icon-sm {
+    height: 16px;
+    width: 16px;
+    background: $primary;
+    border: 1px solid $secondary;
+    border-radius: 50%;
 
+    &.execution {
+        position: relative;
+        border-color: $dark;
+
+        &::before {
+            position: absolute;
+            content: '';
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 12px;
+            width: 12px;
+            background: $dark;
+            border-radius: 50%;
+        }
+    }
+
+    &.complete {
+
+    }
+}
 // .shake-hover {
 
 // }

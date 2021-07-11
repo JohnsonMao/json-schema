@@ -471,4 +471,30 @@ input::placeholder {
     color: #EAF0ED !important;
   }
 }
+
+.circle-icon-sm {
+  height: 16px;
+  width: 16px;
+  background: #3F5D45;
+  border: 1px solid #8DA291;
+  border-radius: 50%;
+}
+
+.circle-icon-sm.execution {
+  position: relative;
+  border-color: #EAF0ED;
+}
+
+.circle-icon-sm.execution::before {
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  height: 12px;
+  width: 12px;
+  background: #EAF0ED;
+  border-radius: 50%;
+}
 /*# sourceMappingURL=custom.css.map */
