@@ -43,21 +43,21 @@
     <div class="wrap">
 
     <div class="container-md mt-md-6 mb-md-7 px-0 px-md-6">
-        <div class="row g-0 justify-content-center">
-            <div class="col-md-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
                 <form action="" class="bg-primary">
-                    <h2 class="text-center text-dark fs-2 fw-bold pb-md-0 py-6 m-0">會員登入</h2>
-                    <ul class="row g-0 d-md-none bg-dark p-6">
-                        <li class="col-4"><a href="#" class="btn btn-outline-dark w-100 h-100 py-2"><img src="./img/fb.svg" alt="facebook"></a></li>
-                        <li class="col-4"><a href="#" class="btn btn-outline-dark w-100 h-100 py-2"><img src="./img/google.svg" alt="google"></a></li>
-                        <li class="col-4"><a href="#" class="btn btn-outline-dark w-100 h-100 py-2"><img src="./img/yahoo.svg" alt="yahoo"></a></li>
-                    </ul>
+                    <div class="d-flex">
+                        <h2 class="w-50 text-dark fs-2 fw-bold pb-md-0 p-6 m-0">運送</h2>
+                        <div class="w-50">
+
+                        </div>
+                    </div>
                     <div class="p-6">
-                        <div class="input-group text-primary mb-3">
+                        <div class="input-group mb-3">
                             <label for="user" class="bg-dark px-4 py-3"><i class="fas fa-user-alt"></i></label>
                             <input type="text" id="user" class="flex-fill bg-dark border-0 py-3" placeholder="電子信箱/手機號碼">
                         </div>
-                        <div class="input-group text-primary mb-3">
+                        <div class="input-group mb-3">
                             <label for="password" class="bg-dark px-4 py-3"><i class="fas fa-key"></i></label>
                             <input type="password" id="password" class="flex-fill bg-dark border-0 py-3" placeholder="請輸入使用者密碼">
                         </div>
@@ -67,13 +67,66 @@
                     <button class="btn btn-info w-100 fs-4 fw-bold py-3">登入帳號</button>
                 </form>
             </div>
-            <div class="col-md-5 my-3 d-none d-md-block">
-                <div class="bg-dark h-100 text-center">
-                    <h3 class="text-secondary fs-4 m-0 p-6 pb-md-0">—— 連結社群帳號 ——</h3>
-                    <ul class="m-6">
-                        <li><a href="#" class="btn btn-outline-dark w-100 mb-3 py-3"><img src="./img/fb.svg" alt="facebook" width="100px" height="20px"></a></li>
-                        <li><a href="#" class="btn btn-outline-dark w-100 mb-3 py-2"><img src="./img/google.svg" alt="google" width="100px" height="28px"></a></li>
-                        <li><a href="#" class="btn btn-outline-dark w-100 mb-3 py-3"><img src="./img/yahoo.svg" alt="yahoo" width="100px" height="20px"></a></li>
+            <div class="col-md-4 d-none d-lg-block">
+                <div class="text-secondary border border-dark">
+                    <h3 class="bg-dark text-center fs-4 fw-bold m-0 p-3">訂單摘要</h3>
+                    <ul class="py-4 px-3">
+                        <li class="d-flex justify-content-between">
+                            <p class="m-0">小計</p>
+                            <p class="m-0">NT$ 1,350</p>
+                        </li>
+                        <li class="d-flex justify-content-between mt-1">
+                            <p class="m-0">運費</p>
+                            <p class="m-0">NT$ 80</p>
+                        </li>
+                        <li class="d-flex justify-content-between mt-3">
+                            <p class="fs-5 fw-bold m-0">總計</p>
+                            <p class="fs-5 fw-bold m-0">NT$ 1,430</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="text-secondary border border-dark">
+                    <h3 class="bg-dark text-center fs-4 fw-bold m-0 p-3">購物清單</h3>
+                    <ul class="px-4 pt-3">
+                        <li class="card row flex-row align-items-center mb-3">
+                            <div class="col-6">
+                                <div class="ratio ratio-3x2">
+                                    <img src="./img/strawberrycake.jpg" alt="strawberry cake">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <h2 class="fs-6 m-0">草莓蛋糕
+                                    <span>（1）</span>
+                                </h2>
+                                <p class="fs-5 fw-bold m-0">NT$ 480</p>
+                            </div>
+                        </li>
+                        <li class="card row flex-row align-items-center mb-3">
+                            <div class="col-6">
+                                <div class="ratio ratio-3x2">
+                                    <img src="./img/cherrycake.jpg" alt="cherry cake">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <h2 class="fs-6 m-0">櫻桃蛋糕
+                                    <span>（1）</span>
+                                </h2>
+                                <p class="fs-5 fw-bold m-0">NT$ 450</p>
+                            </div>
+                        </li>
+                        <li class="card row flex-row align-items-center mb-3">
+                            <div class="col-6">
+                                <div class="ratio ratio-3x2">
+                                    <img src="./img/berrypie.jpg" alt="berries pie">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <h2 class="fs-6 m-0">藍莓派
+                                    <span>（1）</span>
+                                </h2>
+                                <p class="fs-5 fw-bold m-0">NT$ 420</p>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
