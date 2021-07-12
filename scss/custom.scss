@@ -8,6 +8,7 @@ $dark:          #EAF0ED;
 
 $grid-gutter-width:     1.25rem;
 $container-padding-x:   30px;
+$enable-rfs:            false;
 // 3. Include remainder of required Bootstrap stylesheets
 @import "../bootstrap/scss/variables";
 @import "../bootstrap/scss/mixins";
@@ -77,6 +78,11 @@ input::placeholder {
     right: 0;
     z-index: 1000;
 }
+.position-md-static{
+    @include media-breakpoint-up(md) {
+        position: static !important;
+    }
+}
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -125,7 +131,7 @@ input::placeholder {
 }
 .carousel {
     position: relative;
-    height: calc(75vh - 56px);
+    height: calc(75vh - 100px);
 
     .carousel-inner {
         height: 100%;
@@ -133,7 +139,7 @@ input::placeholder {
 
     &-index {
         position: relative;
-        height: calc(100vh - 56px);
+        height: calc(100vh - 100px);
     }
 }
 .carousel-inner {
@@ -408,21 +414,27 @@ input::placeholder {
         background-color: transparent !important;
     }
 }
+.bg-img {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+}
 .text-md-dark {
     @include media-breakpoint-up(md) {
         color: $dark !important;
     }
 }
-.circle-icon-sm {
-    height: 16px;
-    width: 16px;
-    background: $primary;
-    border: 1px solid $secondary;
+.line {
+    width: 100%;
+    height: .5px;
+}
+.circle-icon {
+    height: 20px;
+    width: 20px;
     border-radius: 50%;
 
-    &.execution {
+    &.active {
         position: relative;
-        border-color: $dark;
 
         &::before {
             position: absolute;
@@ -430,15 +442,68 @@ input::placeholder {
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            height: 12px;
-            width: 12px;
-            background: $dark;
+            height: 15px;
+            width: 15px;
             border-radius: 50%;
         }
     }
 
-    &.complete {
+    &.success {
+        position: relative;
 
+        &::before {
+            position: absolute;
+            content: '';
+            top: 50%;
+            left: 50%;
+            transform: translate(-55%, -70%) rotate(-45deg);
+            width: 70%;
+            height: 40%;
+            border-left: 2px solid $primary;
+            border-bottom: 2px solid $primary;
+        }
+    }
+}
+.circle-icon-dark {
+    background: $primary;
+    border: 1px solid $secondary;
+    
+    &.active {
+        border-color: $dark;
+
+        &::before {
+            background: $dark;
+        }
+    }
+
+    &.success{
+        background: $dark;
+        border-color: $dark;
+
+        &::before {
+            border-color: $primary;
+        }
+    }
+}
+.circle-icon-primary {
+    background: $dark;
+    border: 1px solid $secondary;
+    
+    &.active {
+        border-color: $primary;
+
+        &::before {
+            background: $primary;
+        }
+    }
+
+    &.success{
+        background: $primary;
+        border-color: $primary;
+
+        &::before {
+            border-color: $dark;
+        }
     }
 }
 // .shake-hover {
