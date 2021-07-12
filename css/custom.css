@@ -484,9 +484,28 @@ input::placeholder {
   }
 }
 
-.line {
-  width: 100%;
+.progress {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   height: .5px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow: hidden;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .circle-icon {
