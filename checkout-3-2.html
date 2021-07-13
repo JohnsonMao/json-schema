@@ -61,14 +61,38 @@
                     </div>
                     <div class="p-6">
                         <ul class="nav row g-0 mb-6">
-                            <li class="col border border-dark active"><a href="#" class="nav-link lh-1 fs-5 fw-bold py-3">電子發票</a></li>
-                            <li class="col border border-dark"><a href="#" class="nav-link lh-1 fs-5 fw-bold py-3">郵寄發票</a></li>
+                            <li class="col border border-dark">
+                                <a href="#" class="nav-link lh-1 fs-5 fw-bold py-3">電子發票</a>
+                            </li>
+                            <li class="col border border-dark active">
+                                <a href="#" class="nav-link lh-1 fs-5 fw-bold py-3">郵寄發票</a>
+                            </li>
                         </ul>
-                        <div class="mb-3">
-                            <label for="email" class="d-block text-dark fs-5 fw-bold pb-1">
-                                電子郵件信箱
-                            </label>
-                            <input type="text" id="email" class="w-100 bg-dark border-0 px-4 py-3" placeholder="example@email.com">
+                        <div class="row g-1 mb-3">
+                            <div class="d-flex justify-content-between align-items-end">
+                                <label for="address" class="text-dark fs-5 fw-bold">
+                                    地址
+                                </label>
+                                <div class="d-flex align-items-center">
+                                    <input type="checkbox" name="address" id="address" class="cursor-pointer">
+                                    <label for="address" class="text-dark cursor-pointer ps-1">同運送地址</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <select name="country" id="country" class="w-100 bg-dark text-secondary py-3 px-4">
+                                    <option value="KaohsiungCity">高雄市</option>
+                                    <option value="TaipeiCity">台北市</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <select name="district" id="district" class="w-100 bg-dark text-secondary py-3 px-4">
+                                    <option value="XinxingDistrict">新興區</option>
+                                    <option value="YanchengDistrict">鹽埕區</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <input type="text" id="firstName" class="w-100 bg-dark border-0 px-4 py-3" placeholder="幸福路 520 號">
+                            </div>
                         </div>
                         <div>
                             <label for="GUInumber" class="d-block text-dark fs-5 fw-bold pb-1">
