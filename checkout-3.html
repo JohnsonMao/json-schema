@@ -47,86 +47,37 @@
             <div class="col-lg-6">
                 <form action="" class="bg-primary">
                     <div class="row gx-1 align-items-center p-6 pb-0">
-                        <h2 class="col-6 text-dark fs-2 fw-bold m-0">付款</h2>
+                        <h2 class="col-6 text-dark fs-2 fw-bold m-0">發票</h2>
                         <div class="col-6 position-relative">
                             <div class="progress bg-secondary">
-                                <div class="progress-bar bg-dark" style="width: 50%;"></div>
+                                <div class="progress-bar bg-dark" style="width: 100%;"></div>
                             </div>
                             <ul class="w-100 d-flex justify-content-between position-absolute top-50 translate-middle-y pe-1">
                                 <li class="circle-icon circle-icon-dark success"></li>
+                                <li class="circle-icon circle-icon-dark success"></li>
                                 <li class="circle-icon circle-icon-dark active"></li>
-                                <li class="circle-icon circle-icon-dark"></li>
                             </ul>
                         </div>
                     </div>
                     <div class="p-6">
+                        <ul class="nav row g-0 mb-6">
+                            <li class="col border border-dark active"><a href="#" class="nav-link lh-1 fs-5 fw-bold py-3">電子發票</a></li>
+                            <li class="col border border-dark"><a href="#" class="nav-link lh-1 fs-5 fw-bold py-3">郵寄發票</a></li>
+                        </ul>
                         <div class="mb-3">
-                            <label for="creditCardNum" class="d-block text-dark fs-5 fw-bold pb-1">
-                                信用卡卡號
+                            <label for="email" class="d-block text-dark fs-5 fw-bold pb-1">
+                                電子郵件信箱
                             </label>
-                            <div class="input-group">
-                                <input type="text" id="creditCardNum" class="w-50 flex-fill bg-dark border-0 px-4 py-3" placeholder="9012-3456-7890-1234">
-                                <label for="creditCardNum" class="text-primary bg-dark fs-6 px-4 py-3">
-                                    <i class="far fa-credit-card"></i>
-                                </label>
-                            </div>
+                            <input type="text" id="email" class="w-100 bg-dark border-0 px-4 py-3" placeholder="example@email.com">
                         </div>
-                        <div class="row g-1 mb-3">
-                            <label for="lastName" class="d-block text-dark fs-5 fw-bold">
-                                持卡人姓名
+                        <div>
+                            <label for="GUInumber" class="d-block text-dark fs-5 fw-bold pb-1">
+                                統一編號（選填）
                             </label>
-                            <div class="col-6">
-                                <input type="text" id="lastName" class="w-100 bg-dark border-0 px-4 py-3" placeholder="王">
-                            </div>
-                            <div class="col-6">
-                                <input type="text" id="firstName" class="w-100 bg-dark border-0 px-4 py-3" placeholder="小明">
-                            </div>
-                        </div>
-                        <div class="row g-1 mb-3">
-                            <label for="month" class="d-block text-dark fs-5 fw-bold">
-                                有效期限
-                            </label>
-                            <div class="col-6">
-                                <select name="month" id="month" class="w-100 bg-dark text-secondary py-3 px-4" aria-placeholder="month">
-                                    <option class="d-none">月</option>
-                                    <option value="January">1 月</option>
-                                    <option value="February">2 月</option>
-                                    <option value="March">3 月</option>
-                                    <option value="April">4 月</option>
-                                    <option value="May">5 月</option>
-                                    <option value="June">6 月</option>
-                                    <option value="July">7 月</option>
-                                    <option value="August">8 月</option>
-                                    <option value="September">9 月</option>
-                                    <option value="October">10 月</option>
-                                    <option value="November">11 月</option>
-                                    <option value="December">12 月</option>
-                                </select>
-                            </div>
-                            <div class="col-6">
-                                <select name="year" id="year" class="w-100 bg-dark text-secondary py-3 px-4" aria-placeholder="year">
-                                    <option class="d-none">年</option>
-                                    <option value="2021">2021 年</option>
-                                    <option value="2022">2022 年</option>
-                                    <option value="2023">2023 年</option>
-                                    <option value="2024">2024 年</option>
-                                    <option value="2025">2025 年</option>
-                                    <option value="2026">2026 年</option>
-                                    <option value="2027">2027 年</option>
-                                    <option value="2028">2028 年</option>
-                                </select>
-                            </div>
-                            <div class="row g-1">
-                                <label for="cardSecurityCode" class="d-block text-dark fs-5 fw-bold">
-                                    背面末三碼
-                                </label>
-                                <div class="col-6">
-                                    <input type="text" id="cardSecurityCode" class="w-100 bg-dark border-0 px-4 py-3" placeholder="123">
-                                </div>
-                            </div>
+                            <input type="text" id="GUInumber" class="w-100 bg-dark border-0 px-4 py-3" placeholder="12345678">
                         </div>
                     </div>
-                    <button class="btn btn-info w-100 fs-4 fw-bold py-3">下一步</button>
+                    <button class="btn btn-info w-100 fs-4 fw-bold py-3">確認結帳</button>
                 </form>
             </div>
             <div class="col-4 d-none d-lg-block">
