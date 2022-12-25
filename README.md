@@ -1,3 +1,8 @@
-# Sweetaste 甜點電商 切版練習
+# JSON Schema Pratice with Vue 3 TypeScript
 
-Bootstrap 5 & SCSS 練習
+JSON Schema Pratice with Vue 3 TypeScript
+
+## 參考
+
+[react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)
+[vue-json-schema-form](https://github.com/lljj-x/vue-json-schema-form)
