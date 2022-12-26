@@ -1,6 +1,11 @@
 # JSON Schema Pratice with Vue 3 TypeScript
 
-JSON Schema Pratice with Vue 3 TypeScript
+這個專案主要是想熟悉並練習
+
+ - TypeScript
+ - Vitest
+ - JSON Schema
+ - 邏輯 UI 分離
 
 ## 參考
 
