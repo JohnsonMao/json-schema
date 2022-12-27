@@ -5,7 +5,6 @@
  - TypeScript
  - Vitest
  - JSON Schema
- - 邏輯 UI 分離
 
 ## 參考
 
