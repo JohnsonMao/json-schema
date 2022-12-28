@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { ref, watch, onMounted, onBeforeUnmount, PropType } from 'vue'
+import {
+    ref,
+    shallowRef,
+    watchEffect,
+    onMounted,
+    onBeforeUnmount,
+    PropType
+} from 'vue'
 import * as Monaco from 'monaco-editor'
 
 const props = defineProps({
@@ -15,9 +22,9 @@ const props = defineProps({
 
 const emit = defineEmits(['change'])
 
-const monacoInstanceRef = ref<ReturnType<typeof Monaco.editor.create>>()
+const monacoInstanceRef = shallowRef<ReturnType<typeof Monaco.editor.create>>()
 const monacoRef = ref()
-let monacoListener: null | Monaco.IDisposable = null
+let monacoListener: Monaco.IDisposable
 
 onMounted(() => {
     monacoInstanceRef.value = Monaco.editor.create(monacoRef.value, {
@@ -29,39 +36,31 @@ onMounted(() => {
             enabled: false
         }
     })
-    monacoListener = monacoInstanceRef.value.onDidChangeModelContent(
-        (event) => {
-            console.log(event)
-            console.log(monacoInstanceRef.value?.getValue())
-            emit('change')
-        }
-    )
+    monacoListener = monacoInstanceRef.value.onDidChangeModelContent(() => {
+        emit('change', monacoInstanceRef.value?.getValue())
+    })
 })
 
 onBeforeUnmount(() => {
     if (monacoListener) monacoListener.dispose()
 })
 
-watch(
-    () => props.code,
-    (v) => {
-        // const model = monacoInstanceRef.value?.getModel()
-        // console.log(v, model?.getValue())
-        // if (v !== model?.getValue()) {
-        //     monacoInstanceRef.value?.pushUndoStop()
-        //     model?.pushEditOperations(
-        //         [],
-        //         [
-        //             {
-        //                 range: model.getFullModelRange(),
-        //                 text: v
-        //             }
-        //         ]
-        //     )
-        //     monacoInstanceRef.value?.pushUndoStop()
-        // }
-    }
-)
+watchEffect(() => {
+    const model = monacoInstanceRef.value?.getModel()
+
+    monacoInstanceRef.value?.pushUndoStop()
+    model?.pushEditOperations(
+        [],
+        [
+            {
+                range: model?.getFullModelRange(),
+                text: props.code
+            }
+        ],
+        () => null
+    )
+    monacoInstanceRef.value?.pushUndoStop()
+})
 </script>
 
 <template>

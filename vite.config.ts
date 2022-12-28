@@ -5,12 +5,16 @@ import vue from '@vitejs/plugin-vue'
 import eslintPlugin from 'vite-plugin-eslint'
 import monacoEditorPlugin from 'vite-plugin-monaco-editor'
 
+interface IMonacoEditorPlugin {
+    default: typeof monacoEditorPlugin
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [
         vue(),
         eslintPlugin({ cache: false }),
-        monacoEditorPlugin.default({
+        (monacoEditorPlugin as unknown as IMonacoEditorPlugin).default({
             languageWorkers: ['editorWorkerService', 'json']
         })
     ],
