@@ -1,25 +1,76 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { reactive, computed } from 'vue'
 import MonacoEditorVue from './components/MonacoEditor.vue'
+import SchemaForm from '../lib'
 
 const schema = {
     type: 'string'
 }
 
-const schemaRef = ref<unknown>(schema)
-const codeRef = computed(() => JSON.stringify(schemaRef.value, null, 2))
+const demo = reactive({
+    schema,
+    data: {},
+    uiSchema: {}
+})
 
-function handleChange(code: string) {
-    let schema: unknown
+const schemaCodeRef = computed(() => JSON.stringify(demo.schema, null, 2))
+const dataCodeRef = computed(() => JSON.stringify(demo.data, null, 2))
+const uiSchemaCodeRef = computed(() => JSON.stringify(demo.uiSchema, null, 2))
 
+function handleChange(code: string, key: 'schema' | 'data' | 'uiSchema') {
     try {
-        schema = JSON.parse(code)
+        demo[key] = JSON.parse(code)
     } catch (err) {}
-
-    schemaRef.value = schema
 }
 </script>
 
 <template>
-    <MonacoEditorVue :code="codeRef" @change="handleChange" title="Schema" />
+    <div class="container">
+        <div class="container__code">
+            <MonacoEditorVue
+                :code="schemaCodeRef"
+                @change="handleChange($event, 'schema')"
+                title="Schema"
+            />
+            <MonacoEditorVue
+                :code="dataCodeRef"
+                @change="handleChange($event, 'data')"
+                title="Data"
+            />
+            <MonacoEditorVue
+                :code="uiSchemaCodeRef"
+                @change="handleChange($event, 'uiSchema')"
+                title="UI Schema"
+            />
+        </div>
+        <div class="container__form">
+            <SchemaForm :schema="demo.schema" />
+        </div>
+    </div>
 </template>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    display: flex;
+}
+.container__code {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    width: 50%;
+    height: 100vh;
+    gap: 0.25rem;
+}
+.container__code div:first-child {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+}
+.container__form {
+    padding: 1rem;
+}
+</style>

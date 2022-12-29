@@ -16,6 +16,12 @@
     "rules": {
         "no-tabs": "off",
         "indent": "off",
-        "space-before-function-paren": "off"
+        "space-before-function-paren": "off",
+        "func-call-spacing": "off",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "error",
+            { "argsIgnorePattern": "^_" }
+        ]
     }
 }

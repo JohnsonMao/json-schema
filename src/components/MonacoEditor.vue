@@ -1,43 +1,35 @@
 <script setup lang="ts">
-import {
-    ref,
-    shallowRef,
-    watchEffect,
-    onMounted,
-    onBeforeUnmount,
-    PropType
-} from 'vue'
+import { ref, shallowRef, watchEffect, onMounted, onBeforeUnmount } from 'vue'
 import * as Monaco from 'monaco-editor'
 
-const props = defineProps({
-    code: {
-        type: String as PropType<string>,
-        required: true
-    },
-    title: {
-        type: String as PropType<string>,
-        required: true
-    }
-})
+const props = defineProps<{
+    code: string
+    title: string
+}>()
 
-const emit = defineEmits(['change'])
+const emit = defineEmits<{ (event: 'change', id: string): void }>()
 
 const monacoInstanceRef = shallowRef<ReturnType<typeof Monaco.editor.create>>()
 const monacoRef = ref()
 let monacoListener: Monaco.IDisposable
 
 onMounted(() => {
-    monacoInstanceRef.value = Monaco.editor.create(monacoRef.value, {
+    const editor = Monaco.editor.create(monacoRef.value, {
         value: props.code,
         language: 'json',
         formatOnPaste: true,
         tabSize: 2,
+        theme: 'vs-dark',
+        automaticLayout: true,
         minimap: {
             enabled: false
         }
     })
-    monacoListener = monacoInstanceRef.value.onDidChangeModelContent(() => {
-        emit('change', monacoInstanceRef.value?.getValue())
+    monacoInstanceRef.value = editor
+    monacoListener = editor.onDidChangeModelContent(() => {
+        const code = editor.getValue()
+
+        emit('change', code)
     })
 })
 
@@ -64,14 +56,24 @@ watchEffect(() => {
 </script>
 
 <template>
-    <div>
-        <div>{{ title }}</div>
+    <div class="container">
+        <div class="title">{{ title }}</div>
         <div class="schema" ref="monacoRef"></div>
     </div>
 </template>
 
-<style>
+<style scoped>
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.title {
+    background: #333;
+    color: #ccc;
+    text-align: center;
+}
 .schema {
-    height: 100px;
+    flex: 1;
 }
 </style>
