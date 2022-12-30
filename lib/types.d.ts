@@ -1,4 +1,4 @@
-export const enum SchemaType {
+export enum SchemaType {
     'NUMBER' = 'number',
     'INTEGER' = 'integer',
     'STRING' = 'string',

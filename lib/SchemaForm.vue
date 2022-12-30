@@ -1,15 +1,19 @@
 <script setup lang="ts">
-import { Schema, SchemaType } from './types.d'
+import SchemaItems from './SchemaItems.vue'
+import { Schema } from './types.d'
 
 const props = defineProps<{
     schema: Schema
     value?: unknown
 }>()
 
-console.log(props)
+const emit = defineEmits<{ (event: 'change', id: unknown): void }>()
+
+function handleChange(v: unknown) {
+    emit('change', v)
+}
 </script>
 
 <template>
-    <input v-if="schema.type === SchemaType.STRING" type="text">
-    <div v-else>Schema Form</div>
+    <SchemaItems v-bind="props" @change="handleChange" />
 </template>

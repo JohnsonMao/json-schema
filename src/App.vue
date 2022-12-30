@@ -3,6 +3,12 @@ import { reactive, computed } from 'vue'
 import MonacoEditorVue from './components/MonacoEditor.vue'
 import SchemaForm from '../lib'
 
+const demos = Object.values(
+    import.meta.glob('./demos/*.ts', { import: 'default', eager: true })
+)
+
+console.log(demos)
+
 const schema = {
     type: 'string'
 }
@@ -17,10 +23,14 @@ const schemaCodeRef = computed(() => JSON.stringify(demo.schema, null, 2))
 const dataCodeRef = computed(() => JSON.stringify(demo.data, null, 2))
 const uiSchemaCodeRef = computed(() => JSON.stringify(demo.uiSchema, null, 2))
 
-function handleChange(code: string, key: 'schema' | 'data' | 'uiSchema') {
+function handleCode(code: string, key: 'schema' | 'data' | 'uiSchema') {
     try {
         demo[key] = JSON.parse(code)
     } catch (err) {}
+}
+
+function handleSchemaForm() {
+    console.log('handle')
 }
 </script>
 
@@ -29,22 +39,26 @@ function handleChange(code: string, key: 'schema' | 'data' | 'uiSchema') {
         <div class="container__code">
             <MonacoEditorVue
                 :code="schemaCodeRef"
-                @change="handleChange($event, 'schema')"
+                @change="handleCode($event, 'schema')"
                 title="Schema"
             />
             <MonacoEditorVue
                 :code="dataCodeRef"
-                @change="handleChange($event, 'data')"
+                @change="handleCode($event, 'data')"
                 title="Data"
             />
             <MonacoEditorVue
                 :code="uiSchemaCodeRef"
-                @change="handleChange($event, 'uiSchema')"
+                @change="handleCode($event, 'uiSchema')"
                 title="UI Schema"
             />
         </div>
         <div class="container__form">
-            <SchemaForm :schema="demo.schema" />
+            <SchemaForm
+                :schema="demo.schema"
+                :data="demo.data"
+                @change="handleSchemaForm"
+            />
         </div>
     </div>
 </template>
