@@ -1,3 +1,5 @@
+import { PropType } from 'vue'
+
 export enum SchemaType {
     'NUMBER' = 'number',
     'INTEGER' = 'integer',
@@ -27,3 +29,17 @@ export interface Schema {
     additionalProperties?: unknown
     additionalItems?: Schema
 }
+
+export const DefineFieldProps = {
+    schema: {
+        type: Object as PropType<Schema>,
+        required: true
+    },
+    uiSchema: {
+        type: Object,
+        required: true
+    },
+    value: {
+        required: true
+    }
+} as const

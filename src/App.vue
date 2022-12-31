@@ -1,69 +1,83 @@
 <script setup lang="ts">
-import { reactive, computed } from 'vue'
+import { ref, computed } from 'vue'
 import MonacoEditorVue from './components/MonacoEditor.vue'
+import { Schema } from '../lib/types'
 import SchemaForm from '../lib'
 
-const demos = Object.values(
-    import.meta.glob('./demos/*.ts', { import: 'default', eager: true })
-)
-
-console.log(demos)
-
-const schema = {
-    type: 'string'
+interface IDemo {
+    name: string
+    schema: Schema
+    uiSchema: object
+    value: unknown
 }
 
-const demo = reactive({
-    schema,
-    data: {},
-    uiSchema: {}
-})
+const demos = Object.values(
+    import.meta.glob<IDemo>('./demos/*.ts', { import: 'default', eager: true })
+)
 
-const schemaCodeRef = computed(() => JSON.stringify(demo.schema, null, 2))
-const dataCodeRef = computed(() => JSON.stringify(demo.data, null, 2))
-const uiSchemaCodeRef = computed(() => JSON.stringify(demo.uiSchema, null, 2))
+const stringify = (data: unknown) => JSON.stringify(data, null, 2)
+const demo = ref(demos[0])
+const schemaCodeRef = computed(() => stringify(demo.value.schema))
+const uiSchemaCodeRef = computed(() => stringify(demo.value.uiSchema))
+const valueCodeRef = computed(() => stringify(demo.value.value))
 
-function handleCode(code: string, key: 'schema' | 'data' | 'uiSchema') {
+function toggleDemo(index: number) {
+    demo.value = demos[index]
+}
+
+function handleCode(code: string, key: keyof Omit<IDemo, 'name'>) {
     try {
-        demo[key] = JSON.parse(code)
+        demo.value[key] = JSON.parse(code)
     } catch (err) {}
 }
 
-function handleSchemaForm() {
-    console.log('handle')
+function handleValueForm(v: unknown) {
+    demo.value.value = v
 }
 </script>
 
 <template>
     <div class="container">
         <div class="container__code">
-            <MonacoEditorVue
-                :code="schemaCodeRef"
-                @change="handleCode($event, 'schema')"
-                title="Schema"
-            />
-            <MonacoEditorVue
-                :code="dataCodeRef"
-                @change="handleCode($event, 'data')"
-                title="Data"
-            />
-            <MonacoEditorVue
-                :code="uiSchemaCodeRef"
-                @change="handleCode($event, 'uiSchema')"
-                title="UI Schema"
-            />
+            <div class="container__code__buttons">
+                <button
+                    v-for="(demo, index) in demos"
+                    :key="index"
+                    @click="toggleDemo(index)"
+                >
+                    {{ demo.name }}
+                </button>
+            </div>
+            <div class="container__code__editor">
+                <MonacoEditorVue
+                    :code="schemaCodeRef"
+                    @change="handleCode($event, 'schema')"
+                    title="Schema"
+                />
+                <MonacoEditorVue
+                    :code="uiSchemaCodeRef"
+                    @change="handleCode($event, 'uiSchema')"
+                    title="UI Schema"
+                />
+                <MonacoEditorVue
+                    :code="valueCodeRef"
+                    @change="handleCode($event, 'value')"
+                    title="Data"
+                />
+            </div>
         </div>
         <div class="container__form">
             <SchemaForm
                 :schema="demo.schema"
-                :data="demo.data"
-                @change="handleSchemaForm"
+                :uiSchema="demo.uiSchema"
+                :value="demo.value"
+                @change="handleValueForm"
             />
         </div>
     </div>
 </template>
 
-<style>
+<style lang="scss">
 * {
     box-sizing: border-box;
     margin: 0;
@@ -71,20 +85,35 @@ function handleSchemaForm() {
 }
 .container {
     display: flex;
-}
-.container__code {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    width: 50%;
-    height: 100vh;
-    gap: 0.25rem;
-}
-.container__code div:first-child {
-    grid-column: 1 / 3;
-    grid-row: 1 / 2;
-}
-.container__form {
-    padding: 1rem;
+
+    &__code {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        height: 100vh;
+
+        &__buttons {
+            display: flex;
+            padding: 0.25rem 1rem;
+            gap: 0.5rem;
+        }
+
+        &__editor {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            flex: 1;
+            gap: 0.25rem;
+        }
+
+        &__editor div:first-child {
+            grid-column: 1 / 3;
+            grid-row: 1 / 2;
+        }
+    }
+
+    &__form {
+        padding: 1rem;
+    }
 }
 </style>

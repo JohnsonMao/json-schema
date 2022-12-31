@@ -1,23 +1,27 @@
 <script setup lang="ts">
-import { Schema, SchemaType } from './types.d'
+import { DefineFieldProps, SchemaType } from './types.d'
 import StringField from './fields/StringField.vue'
 import NumberField from './fields/NumberField.vue'
 
-const props = defineProps<{
-    schema: Schema
-    value?: unknown
-}>()
+defineProps(DefineFieldProps)
+
+const emit = defineEmits<{ (event: 'change', value: unknown): void }>()
 
 const components = {
     [SchemaType.STRING]: StringField,
     [SchemaType.NUMBER]: NumberField
 }
 
-console.log(props)
+function handleChange(v: unknown) {
+    emit('change', v)
+}
 </script>
 
 <template>
     <component
-        :is="components[schema.type as keyof typeof components] || 'div'"
+        v-if="Object.keys(components).includes(schema.type)"
+        v-bind="$props"
+        :is="components[schema.type as keyof typeof components]"
+        @change="handleChange"
     />
 </template>

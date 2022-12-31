@@ -1,6 +1,21 @@
 <script setup lang="ts">
+import { DefineFieldProps } from '../types.d'
+
+defineProps(DefineFieldProps)
+
+const emit = defineEmits<{ (event: 'change', value: number | null): void }>()
+
+function handleChange(e: Event) {
+    const { value } = e.target as HTMLInputElement
+
+    if (value === '' || Number.isNaN(+value)) {
+        emit('change', null)
+    } else {
+        emit('change', +value)
+    }
+}
 </script>
 
 <template>
-    <div>Number</div>
+    <input type="number" :value="value" @input="handleChange" />
 </template>
