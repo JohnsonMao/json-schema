@@ -1,4 +1,4 @@
-import { PropType } from 'vue'
+import { PropType, DefineComponent } from 'vue'
 
 export enum SchemaType {
     'NUMBER' = 'number',
@@ -9,25 +9,39 @@ export enum SchemaType {
     'BOOLEAN' = 'boolean'
 }
 
-type SchemaRef = { $ref: string }
-
 export interface Schema {
     type: SchemaType | string
     const?: unknown
     format?: string
+    label: string,
     default?: unknown
+
     properties?: {
-        [key: string]: Schema | SchemaRef
+        [key: string]: Schema
     }
-    items?: Schema | Schema[] | SchemaRef
+    items?: Schema | Schema[]
     dependencies?: {
-        [key: string]: string[] | Schema | SchemaRef
+        [key: string]: string[] | Schema
     }
+
+    oneOf?: Schema[]
+    anyOf?: Schema[]
+    allOf?: Schema[]
     required?: string[]
-    enum?: unknown[]
-    enumKeyValue?: unknown[]
+
+    enum?: string[]
+    enumNames?: string[]
+    enumKeyValue?: string[]
     additionalProperties?: unknown
     additionalItems?: Schema
+
+    minLength?: number
+    maxLength?: number
+    minimun?: number
+    maximum?: number
+    multipleOf?: number
+    exclusiveMaximum?: number
+    exclusiveMinimum?: number
 }
 
 export const DefineFieldProps = {
@@ -39,7 +53,15 @@ export const DefineFieldProps = {
         type: Object,
         required: true
     },
+    rootSchema: {
+        type: Object,
+        required: true
+    },
     value: {
         required: true
     }
 } as const
+
+export interface ISchemaFormContext {
+    readonly SchemaItems: DefineComponent<typeof DefineFieldProps>
+}

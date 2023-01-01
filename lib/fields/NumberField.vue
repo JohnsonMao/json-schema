@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DefineFieldProps } from '../types.d'
+import { DefineFieldProps } from '../types'
 
 defineProps(DefineFieldProps)
 
