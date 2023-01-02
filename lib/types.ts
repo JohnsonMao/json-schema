@@ -50,15 +50,36 @@ export const DefineFieldProps = {
         required: true
     },
     uiSchema: {
-        type: Object,
+        type: Object as PropType<Record<string, unknown>>
+    },
+    value: {}
+} as const
+
+export const DefineObjectProps = {
+    schema: {
+        type: Object as PropType<Schema>,
         required: true
     },
-    rootSchema: {
-        type: Object,
-        required: true
+    uiSchema: {
+        type: Object as PropType<Record<string, unknown>>
     },
     value: {
+        type: Object as PropType<Record<string | number, unknown>>,
+        default: () => ({})
+    }
+} as const
+
+export const DefineArrayProps = {
+    schema: {
+        type: Object as PropType<Schema>,
         required: true
+    },
+    uiSchema: {
+        type: Object as PropType<Record<string, unknown>>
+    },
+    value: {
+        type: Array as PropType<unknown[]>,
+        default: () => []
     }
 } as const
 

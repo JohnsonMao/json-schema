@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>41/41</span>
+                <span class='fraction'>36/36</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>41/41</span>
+                <span class='fraction'>36/36</span>
             </div>
         
             
@@ -99,12 +99,7 @@
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a>
-<a name='L39'></a><a href='#L39'>39</a>
-<a name='L40'></a><a href='#L40'>40</a>
-<a name='L41'></a><a href='#L41'>41</a>
-<a name='L42'></a><a href='#L42'>42</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -118,21 +113,16 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -146,12 +136,11 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;script setup lang="ts"&gt;
-import { computed } from 'vue'
-import { DefineFieldProps } from '../types'
+import { DefineObjectProps } from '../types'
 import { schemaFormContextKey } from '../symbol'
-import { injectStrict, isObject } from '../utils'
+import { injectStrict } from '../utils'
 &nbsp;
-const props = defineProps(DefineFieldProps)
+const props = defineProps(DefineObjectProps)
 &nbsp;
 const emit = defineEmits&lt;{
     (event: 'change', value: Record&lt;string, unknown&gt;): void
@@ -160,13 +149,10 @@ const emit = defineEmits&lt;{
 const context = injectStrict(schemaFormContextKey)
 const { SchemaItems } = context
 &nbsp;
-const properties = computed(() =&gt; props.schema.properties || {})
-const valueRef = computed(() =&gt; isObject(props.value) ? (props.value as Record&lt;string, unknown&gt;) : {})
-&nbsp;
 function handleChange(key: string | number, v: unknown) {
-    const value = valueRef.value
+    const value = props.value
 &nbsp;
-    if (v === undefined) {
+    if (v == null || v === '') {
         delete value[key]
     } else {
         value[key] = v
@@ -177,11 +163,10 @@ function handleChange(key: string | number, v: unknown) {
 &nbsp;
 &lt;template&gt;
     &lt;SchemaItems
-        v-for="(prop, key) in properties"
+        v-for="(prop, key) in schema?.properties || {}"
         :schema="prop"
         :uiSchema="uiSchema"
-        :root-schema="rootSchema"
-        :value="valueRef[key]"
+        :value="value[key]"
         :key="key"
         @change="(v) =&gt; handleChange(key, v)"
     /&gt;
@@ -193,7 +178,7 @@ function handleChange(key: string | number, v: unknown) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-01-01T07:36:34.729Z
+                at 2023-01-02T12:53:19.465Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -1,15 +1,11 @@
 <script setup lang="ts">
 import { provide } from 'vue'
 
-import { Schema, ISchemaFormContext } from './types'
+import { ISchemaFormContext, DefineFieldProps } from './types'
 import SchemaItems from './SchemaItems.vue'
 import { schemaFormContextKey } from './symbol'
 
-defineProps<{
-    schema: Schema
-    uiSchema: object
-    value: unknown
-}>()
+defineProps(DefineFieldProps)
 
 const emit = defineEmits<{ (event: 'change', value: unknown): void }>()
 
@@ -25,5 +21,5 @@ function handleChange(v: unknown) {
 </script>
 
 <template>
-    <SchemaItems v-bind="$props" :root-schema="schema" @change="handleChange" />
+    <SchemaItems v-bind="$props" @change="handleChange" />
 </template>

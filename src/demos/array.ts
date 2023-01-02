@@ -1,15 +1,9 @@
 export default {
-    name: 'Demo',
+    name: 'Array',
     schema: {
         type: 'object',
         properties: {
-            name: {
-                type: 'string'
-            },
-            age: {
-                type: 'number'
-            },
-            love: {
+            lover: {
                 type: 'array',
                 items: [
                     {
@@ -37,8 +31,6 @@ export default {
     },
     uiSchema: {},
     value: {
-        name: 'Mao',
-        age: 18,
         hobby: ['Coding']
     }
 }

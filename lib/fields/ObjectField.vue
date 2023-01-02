@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { DefineFieldProps } from '../types'
+import { DefineObjectProps } from '../types'
 import { schemaFormContextKey } from '../symbol'
-import { injectStrict, isObject } from '../utils'
+import { injectStrict } from '../utils'
 
-const props = defineProps(DefineFieldProps)
+const props = defineProps(DefineObjectProps)
 
 const emit = defineEmits<{
     (event: 'change', value: Record<string, unknown>): void
@@ -13,13 +12,10 @@ const emit = defineEmits<{
 const context = injectStrict(schemaFormContextKey)
 const { SchemaItems } = context
 
-const properties = computed(() => props.schema.properties || {})
-const valueRef = computed(() => isObject(props.value) ? (props.value as Record<string, unknown>) : {})
-
 function handleChange(key: string | number, v: unknown) {
-    const value = valueRef.value
+    const value = props.value
 
-    if (v === undefined) {
+    if (v == null || v === '') {
         delete value[key]
     } else {
         value[key] = v
@@ -30,11 +26,10 @@ function handleChange(key: string | number, v: unknown) {
 
 <template>
     <SchemaItems
-        v-for="(prop, key) in properties"
+        v-for="(prop, key) in schema?.properties || {}"
         :schema="prop"
         :uiSchema="uiSchema"
-        :root-schema="rootSchema"
-        :value="valueRef[key]"
+        :value="value[key]"
         :key="key"
         @change="(v) => handleChange(key, v)"
     />

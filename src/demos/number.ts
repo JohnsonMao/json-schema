@@ -1,5 +1,5 @@
 export default {
-    name: 'Simple',
+    name: 'Number',
     schema: {
         type: 'number'
     },

@@ -7,7 +7,7 @@ import SchemaForm from '../lib'
 interface IDemo {
     name: string
     schema: Schema
-    uiSchema: object
+    uiSchema: Record<string, unknown>
     value: unknown
 }
 
