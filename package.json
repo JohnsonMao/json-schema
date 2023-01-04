@@ -3,6 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "main": "./dist/json-schema.umd.cjs",
+  "module": "./dist/json-schema.js",
   "scripts": {
     "start": "vite",
     "dev": "vite",
@@ -10,6 +12,12 @@
     "preview": "vite preview",
     "test": "vitest",
     "coverage": "vitest run --coverage"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/json-schema.js",
+      "require": "./dist/json-schema.umd.cjs"
+    }
   },
   "dependencies": {
     "vue": "^3.2.45"

@@ -56,13 +56,7 @@ export const DefineFieldProps = {
 } as const
 
 export const DefineObjectProps = {
-    schema: {
-        type: Object as PropType<Schema>,
-        required: true
-    },
-    uiSchema: {
-        type: Object as PropType<Record<string, unknown>>
-    },
+    ...DefineFieldProps,
     value: {
         type: Object as PropType<Record<string | number, unknown>>,
         default: () => ({})
@@ -70,19 +64,43 @@ export const DefineObjectProps = {
 } as const
 
 export const DefineArrayProps = {
-    schema: {
-        type: Object as PropType<Schema>,
-        required: true
-    },
-    uiSchema: {
-        type: Object as PropType<Record<string, unknown>>
-    },
+    ...DefineFieldProps,
     value: {
         type: Array as PropType<unknown[]>,
         default: () => []
     }
 } as const
 
+export const DefineWidgetProps = {
+    value: {}
+} as const
+
+export const DefineOptionsWidgetProps = {
+    ...DefineWidgetProps,
+    options: {
+        type: Array as PropType<{ label: string; value: unknown }[]>,
+        required: true
+    }
+} as const
+
+type DefineWidget = DefineComponent<typeof DefineWidgetProps>
+type DefineOptionsWidget = DefineComponent<typeof DefineOptionsWidgetProps>
+
+export enum widgetsName {
+    MultiSelectWidget = 'MultiSelectWidget',
+    TextWidget = 'TextWidget',
+    NumberWidget = 'NumberWidget'
+}
+
+export interface ITheme {
+    widgets: {
+        [widgetsName.MultiSelectWidget]: DefineOptionsWidget
+        [widgetsName.TextWidget]: DefineWidget
+        [widgetsName.NumberWidget]: DefineWidget
+    }
+}
+
 export interface ISchemaFormContext {
     readonly SchemaItems: DefineComponent<typeof DefineFieldProps>
+    readonly theme: ITheme
 }

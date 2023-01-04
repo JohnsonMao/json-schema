@@ -1,21 +1,21 @@
 <script setup lang="ts">
+import { schemaFormContextKey } from '../symbol'
 import { DefineFieldProps } from '../types'
+import { injectStrict } from '../utils'
 
 defineProps(DefineFieldProps)
 
+const context = injectStrict(schemaFormContextKey)
+const { theme } = context
+const { NumberWidget } = theme.widgets
+
 const emit = defineEmits<{ (event: 'change', value: number | null): void }>()
 
-function handleChange(e: Event) {
-    const { value } = e.target as HTMLInputElement
-
-    if (value === '' || Number.isNaN(+value)) {
-        emit('change', null)
-    } else {
-        emit('change', +value)
-    }
+function handleChange(value: number | null) {
+    emit('change', value)
 }
 </script>
 
 <template>
-    <input type="number" :value="value" @input="handleChange" />
+    <NumberWidget :value="value" @change="handleChange" />
 </template>

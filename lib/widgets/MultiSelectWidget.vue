@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
+import { DefineOptionsWidgetProps } from '../types'
 
-const props = defineProps<{
-    value?: unknown[]
-    options?: { label: string; value: unknown }[]
-}>()
+const props = defineProps(DefineOptionsWidgetProps)
 
 const theModel = ref(Array.isArray(props.value) ? props.value : [])
 
@@ -17,7 +15,7 @@ function handleChange() {
 watch(
     () => props.value,
     (newValue, oldValue) => {
-        if (newValue !== oldValue) {
+        if (newValue !== oldValue && Array.isArray(props.value)) {
             theModel.value = props.value || []
         }
     }

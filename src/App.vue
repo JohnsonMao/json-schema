@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import MonacoEditorVue from './components/MonacoEditor.vue'
-import { Schema } from '../lib/types'
-import SchemaForm from '../lib'
+import SchemaForm, { Schema } from '../lib'
+import theme from '../lib/theme'
 
 interface IDemo {
     name: string
@@ -68,6 +68,7 @@ function handleValueForm(v: unknown) {
         </div>
         <div class="container__form">
             <SchemaForm
+                :theme="theme"
                 :schema="demo.schema"
                 :uiSchema="demo.uiSchema"
                 :value="demo.value"

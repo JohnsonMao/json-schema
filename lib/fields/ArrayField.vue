@@ -3,14 +3,14 @@ import { defineComponent, h } from 'vue'
 import { DefineArrayProps } from '../types'
 import { schemaFormContextKey } from '../symbol'
 import { injectStrict } from '../utils'
-import MultiSelection from '../widgets/MultiSelection.vue'
 
 const props = defineProps(DefineArrayProps)
 
 const emit = defineEmits<{ (event: 'change', value: unknown[]): void }>()
 
 const context = injectStrict(schemaFormContextKey)
-const { SchemaItems } = context
+const { SchemaItems, theme } = context
+const { MultiSelectWidget } = theme.widgets
 
 function handleChange(index: number, v: unknown) {
     const value = props.value
@@ -91,7 +91,7 @@ const ArrayItemWrapper = defineComponent({
         />
     </template>
     <template v-else-if="schema.items?.enum">
-        <MultiSelection
+        <MultiSelectWidget
             :value="value"
             :options="schema.items.enum.map((v) => ({ label: v, value: v }))"
             @change="(v) => selectionArray(v)"

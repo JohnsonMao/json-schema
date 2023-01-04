@@ -4,7 +4,6 @@ import NumberField from './fields/NumberField.vue'
 import ObjectField from './fields/ObjectField.vue'
 import ArrayField from './fields/ArrayField.vue'
 import { DefineFieldProps, SchemaType } from './types'
-import { hasOwnProperty } from './utils'
 
 defineProps(DefineFieldProps)
 
@@ -24,7 +23,7 @@ function handleChange(v: unknown) {
 
 <template>
     <component
-        v-if="hasOwnProperty(components, schema?.type)"
+        v-if="Object.hasOwn(components, schema?.type)"
         v-bind="$props"
         :is="components[schema.type as keyof typeof components]"
         @change="handleChange"

@@ -1,17 +1,21 @@
 <script setup lang="ts">
+import { schemaFormContextKey } from '../symbol'
 import { DefineFieldProps } from '../types'
+import { injectStrict } from '../utils'
 
 defineProps(DefineFieldProps)
 
+const context = injectStrict(schemaFormContextKey)
+const { theme } = context
+const { TextWidget } = theme.widgets
+
 const emit = defineEmits<{ (event: 'change', value: string): void }>()
 
-function handleChange(e: Event) {
-    const { value } = e.target as HTMLInputElement
-
+function handleChange(value: string) {
     emit('change', value)
 }
 </script>
 
 <template>
-    <input type="text" :value="value" @input="handleChange" />
+    <TextWidget :value="value" @change="handleChange" />
 </template>
