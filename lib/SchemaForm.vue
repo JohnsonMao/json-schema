@@ -4,15 +4,20 @@ import { provide } from 'vue'
 import { ISchemaFormContext, Schema, ITheme } from './types'
 import SchemaItems from './SchemaItems.vue'
 import { schemaFormContextKey } from './symbol'
+import { useModelWrapper } from './utils'
 
-const props = defineProps<{
+interface IProps {
     schema: Schema
     uiSchema: Record<string, unknown>
-    value: unknown
+    modelValue: unknown
     theme: ITheme
-}>()
+}
 
-const emit = defineEmits<{ (event: 'change', value: unknown): void }>()
+const props = defineProps<IProps>()
+
+const emit = defineEmits<{ (event: 'update:modelValue', value: unknown): void }>()
+
+const theModel = useModelWrapper(props, emit)
 
 const context = {
     SchemaItems,
@@ -22,7 +27,7 @@ const context = {
 provide(schemaFormContextKey, context)
 
 function handleChange(v: unknown) {
-    emit('change', v)
+    theModel.value = v
 }
 </script>
 
@@ -30,7 +35,7 @@ function handleChange(v: unknown) {
     <SchemaItems
         :schema="schema"
         :uiSchema="uiSchema"
-        :value="value"
+        :value="theModel"
         @change="handleChange"
     />
 </template>

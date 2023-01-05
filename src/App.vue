@@ -30,10 +30,6 @@ function handleCode(code: string, key: keyof Omit<IDemo, 'name'>) {
         demo.value[key] = JSON.parse(code)
     } catch (err) {}
 }
-
-function handleValueForm(v: unknown) {
-    demo.value.value = v
-}
 </script>
 
 <template>
@@ -68,11 +64,10 @@ function handleValueForm(v: unknown) {
         </div>
         <div class="container__form">
             <SchemaForm
+                v-model="demo.value"
                 :theme="theme"
                 :schema="demo.schema"
                 :uiSchema="demo.uiSchema"
-                :value="demo.value"
-                @change="handleValueForm"
             />
         </div>
     </div>

@@ -1,6 +1,7 @@
 import { mount, VueWrapper } from '@vue/test-utils'
 import { describe, it, expect, beforeEach } from 'vitest'
 import SchemaForm, { ObjectField } from '../../lib'
+import theme from '../../lib/theme'
 import object from '../../src/demos/object'
 
 /**
@@ -13,6 +14,7 @@ describe('SchemaForm', () => {
     beforeEach(() => {
         wrapper = mount(SchemaForm, {
             props: {
+                theme,
                 schema: object.schema,
                 uiSchema: object.uiSchema
             }

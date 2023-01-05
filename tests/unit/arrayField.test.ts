@@ -1,6 +1,7 @@
 import { mount, VueWrapper } from '@vue/test-utils'
 import { describe, it, expect } from 'vitest'
 import SchemaForm, { ArrayField, MultiSelection } from '../../lib'
+import theme from '../../lib/theme'
 import array from '../../src/demos/array'
 
 /**
@@ -13,6 +14,7 @@ describe('SchemaForm', () => {
     it('Should render correct Tuple Array', async () => {
         wrapper = mount(SchemaForm, {
             props: {
+                theme,
                 schema: {
                     type: 'array',
                     items: [
@@ -45,6 +47,7 @@ describe('SchemaForm', () => {
     it('Should render correct multiple selection Array', async () => {
         wrapper = mount(SchemaForm, {
             props: {
+                theme,
                 schema: {
                     type: 'array',
                     items: {
@@ -74,6 +77,7 @@ describe('SchemaForm', () => {
     it('Should render correct CRUD Array', async () => {
         wrapper = mount(SchemaForm, {
             props: {
+                theme,
                 schema: {
                     type: 'array',
                     items: {
