@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { provide } from 'vue'
+import { computed, provide } from 'vue'
+import Ajv, { Options } from 'ajv'
 
 import { ISchemaFormContext, Schema, ITheme } from './types'
 import SchemaItems from './SchemaItems.vue'
@@ -11,11 +12,14 @@ interface IProps {
     uiSchema: Record<string, unknown>
     modelValue: unknown
     theme: ITheme
+    ajvOptions?: Options
 }
 
 const props = defineProps<IProps>()
 
-const emit = defineEmits<{ (event: 'update:modelValue', value: unknown): void }>()
+const emit = defineEmits<{
+    (event: 'update:modelValue', value: unknown): void
+}>()
 
 const theModel = useModelWrapper(props, emit)
 
@@ -26,9 +30,36 @@ const context = {
 
 provide(schemaFormContextKey, context)
 
+const defaultAjvOptions: Options = {
+    allErrors: true,
+    jsonPointers: true
+}
+
+const validator = computed(
+    () =>
+        new Ajv({
+            ...defaultAjvOptions,
+            ...props.ajvOptions
+        })
+)
+
 function handleChange(v: unknown) {
     theModel.value = v
 }
+
+function getValid() {
+    const valid = validator.value.validate(
+        props.schema,
+        theModel.value
+    ) as boolean
+
+    return {
+        valid,
+        errors: validator.value.errors || []
+    }
+}
+
+defineExpose({ getValid })
 </script>
 
 <template>

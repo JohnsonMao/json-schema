@@ -20,6 +20,7 @@ const demo = ref(demos[0])
 const schemaCodeRef = computed(() => stringify(demo.value.schema))
 const uiSchemaCodeRef = computed(() => stringify(demo.value.uiSchema))
 const valueCodeRef = computed(() => stringify(demo.value.value))
+const schemaFormRef = ref<InstanceType<typeof SchemaForm>>()
 
 function toggleDemo(index: number) {
     demo.value = demos[index]
@@ -29,6 +30,10 @@ function handleCode(code: string, key: keyof Omit<IDemo, 'name'>) {
     try {
         demo.value[key] = JSON.parse(code)
     } catch (err) {}
+}
+
+function handleVaild() {
+    console.log(schemaFormRef.value?.getValid())
 }
 </script>
 
@@ -64,11 +69,13 @@ function handleCode(code: string, key: keyof Omit<IDemo, 'name'>) {
         </div>
         <div class="container__form">
             <SchemaForm
+                ref="schemaFormRef"
                 v-model="demo.value"
                 :theme="theme"
                 :schema="demo.schema"
                 :uiSchema="demo.uiSchema"
             />
+            <button @click="handleVaild">驗證</button>
         </div>
     </div>
 </template>
