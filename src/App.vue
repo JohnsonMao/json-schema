@@ -33,7 +33,7 @@ function handleCode(code: string, key: keyof Omit<IDemo, 'name'>) {
 }
 
 function handleVaild() {
-    console.log(schemaFormRef.value?.getValid())
+    console.log(schemaFormRef.value?.validate())
 }
 </script>
 

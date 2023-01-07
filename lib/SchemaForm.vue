@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { computed, provide } from 'vue'
+import { computed, provide, withDefaults } from 'vue'
 import Ajv, { Options } from 'ajv'
+import i18n from 'ajv-i18n'
 
 import { ISchemaFormContext, Schema, ITheme } from './types'
 import SchemaItems from './SchemaItems.vue'
 import { schemaFormContextKey } from './symbol'
 import { useModelWrapper } from './utils'
+import { validateFormData } from './validator'
 
 interface IProps {
     schema: Schema
@@ -13,9 +15,12 @@ interface IProps {
     modelValue: unknown
     theme: ITheme
     ajvOptions?: Options
+    locale?: keyof typeof i18n
 }
 
-const props = defineProps<IProps>()
+const props = withDefaults(defineProps<IProps>(), {
+    locale: 'zh-TW'
+})
 
 const emit = defineEmits<{
     (event: 'update:modelValue', value: unknown): void
@@ -31,8 +36,7 @@ const context = {
 provide(schemaFormContextKey, context)
 
 const defaultAjvOptions: Options = {
-    allErrors: true,
-    jsonPointers: true
+    allErrors: true
 }
 
 const validator = computed(
@@ -47,19 +51,16 @@ function handleChange(v: unknown) {
     theModel.value = v
 }
 
-function getValid() {
-    const valid = validator.value.validate(
+function validate() {
+    return validateFormData(
+        validator.value,
+        theModel.value,
         props.schema,
-        theModel.value
-    ) as boolean
-
-    return {
-        valid,
-        errors: validator.value.errors || []
-    }
+        props.locale
+    )
 }
 
-defineExpose({ getValid })
+defineExpose({ validate })
 </script>
 
 <template>
