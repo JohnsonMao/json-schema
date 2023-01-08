@@ -1,3 +1,5 @@
+import { IDemo } from '../types'
+
 export default {
     name: 'Array',
     schema: {
@@ -7,7 +9,8 @@ export default {
                 type: 'array',
                 items: [
                     {
-                        type: 'string'
+                        type: 'string',
+                        minLength: 10
                     },
                     {
                         type: 'number'
@@ -33,4 +36,4 @@ export default {
     value: {
         hobby: ['Coding']
     }
-}
+} as IDemo

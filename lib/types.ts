@@ -1,4 +1,5 @@
 import { PropType, DefineComponent } from 'vue'
+import { ErrorObject } from 'ajv'
 
 export enum SchemaType {
     'NUMBER' = 'number',
@@ -13,7 +14,7 @@ export interface Schema {
     type: SchemaType | string
     const?: unknown
     format?: string
-    label: string,
+    label?: string
     default?: unknown
 
     properties?: {
@@ -44,6 +45,17 @@ export interface Schema {
     exclusiveMinimum?: number
 }
 
+export type Errors = (Partial<ErrorObject> & {
+    name?: string
+    property?: string
+})[]
+
+export type ErrorSchema = {
+    [key: string]: ErrorSchema
+} & {
+    __errors?: string[]
+}
+
 export const DefineFieldProps = {
     schema: {
         type: Object as PropType<Schema>,
@@ -51,6 +63,10 @@ export const DefineFieldProps = {
     },
     uiSchema: {
         type: Object as PropType<Record<string, unknown>>
+    },
+    errorSchema: {
+        type: Object as PropType<ErrorSchema>,
+        default: () => ({})
     },
     value: {}
 } as const
@@ -72,7 +88,10 @@ export const DefineArrayProps = {
 } as const
 
 export const DefineWidgetProps = {
-    value: {}
+    value: {},
+    error: {
+        type: Array as PropType<string[]>
+    }
 } as const
 
 export const DefineOptionsWidgetProps = {

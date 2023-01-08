@@ -17,5 +17,9 @@ function handleChange(value: number | null) {
 </script>
 
 <template>
-    <NumberWidget :value="value" @change="handleChange" />
+    <NumberWidget
+        :value="value"
+        :error="errorSchema.__errors"
+        @change="handleChange"
+    />
 </template>

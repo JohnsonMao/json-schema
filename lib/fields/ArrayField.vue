@@ -85,6 +85,7 @@ const ArrayItemWrapper = defineComponent({
             v-for="(item, index) in schema.items"
             :schema="item"
             :uiSchema="uiSchema"
+            :errorSchema="errorSchema[index]"
             :value="value[index]"
             :key="index"
             @change="(v) => handleChange(index, v)"
@@ -93,6 +94,7 @@ const ArrayItemWrapper = defineComponent({
     <template v-else-if="schema.items?.enum">
         <MultiSelectWidget
             :value="value"
+            :error="errorSchema.__errors"
             :options="schema.items.enum.map((v) => ({ label: v, value: v }))"
             @change="(v) => selectionArray(v)"
         />
@@ -106,6 +108,7 @@ const ArrayItemWrapper = defineComponent({
             <SchemaItems
                 :schema="schema.items"
                 :uiSchema="uiSchema"
+                :errorSchema="errorSchema[index]"
                 :value="itemValue"
                 @change="(v) => handleChange(index, v)"
             />

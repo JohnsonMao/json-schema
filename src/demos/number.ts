@@ -1,3 +1,5 @@
+import { IDemo } from '../types'
+
 export default {
     name: 'Number',
     schema: {
@@ -5,4 +7,4 @@ export default {
     },
     uiSchema: {},
     value: 1
-}
+} as IDemo

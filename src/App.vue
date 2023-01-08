@@ -1,15 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import MonacoEditorVue from './components/MonacoEditor.vue'
-import SchemaForm, { Schema } from '../lib'
+import SchemaForm from '../lib'
 import theme from '../lib/theme'
-
-interface IDemo {
-    name: string
-    schema: Schema
-    uiSchema: Record<string, unknown>
-    value: unknown
-}
+import { IDemo } from './types'
 
 const demos = Object.values(
     import.meta.glob<IDemo>('./demos/*.ts', { import: 'default', eager: true })
@@ -20,6 +14,7 @@ const demo = ref(demos[0])
 const schemaCodeRef = computed(() => stringify(demo.value.schema))
 const uiSchemaCodeRef = computed(() => stringify(demo.value.uiSchema))
 const valueCodeRef = computed(() => stringify(demo.value.value))
+const errorCodeRef = ref('')
 const schemaFormRef = ref<InstanceType<typeof SchemaForm>>()
 
 function toggleDemo(index: number) {
@@ -33,7 +28,9 @@ function handleCode(code: string, key: keyof Omit<IDemo, 'name'>) {
 }
 
 function handleVaild() {
-    console.log(schemaFormRef.value?.validate())
+    const validion = schemaFormRef.value?.validate()
+    console.log(validion)
+    errorCodeRef.value = stringify(validion?.errorSchema)
 }
 </script>
 
@@ -56,14 +53,18 @@ function handleVaild() {
                     title="Schema"
                 />
                 <MonacoEditorVue
+                    :code="valueCodeRef"
+                    @change="handleCode($event, 'value')"
+                    title="Data"
+                />
+                <MonacoEditorVue
                     :code="uiSchemaCodeRef"
                     @change="handleCode($event, 'uiSchema')"
                     title="UI Schema"
                 />
                 <MonacoEditorVue
-                    :code="valueCodeRef"
-                    @change="handleCode($event, 'value')"
-                    title="Data"
+                    :code="errorCodeRef"
+                    title="Error Schema"
                 />
             </div>
         </div>
@@ -107,11 +108,6 @@ function handleVaild() {
             grid-template-rows: repeat(2, 1fr);
             flex: 1;
             gap: 0.25rem;
-        }
-
-        &__editor div:first-child {
-            grid-column: 1 / 3;
-            grid-row: 1 / 2;
         }
     }
 

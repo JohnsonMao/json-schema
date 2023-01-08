@@ -30,6 +30,7 @@ function handleChange(key: string | number, v: unknown) {
         :schema="prop"
         :uiSchema="uiSchema"
         :value="value[key]"
+        :errorSchema="errorSchema[key]"
         :key="key"
         @change="(v) => handleChange(key, v)"
     />

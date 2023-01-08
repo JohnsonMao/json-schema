@@ -17,5 +17,9 @@ function handleChange(value: string) {
 </script>
 
 <template>
-    <TextWidget :value="value" @change="handleChange" />
+    <TextWidget
+        :value="value"
+        :error="errorSchema.__errors"
+        @change="handleChange"
+    />
 </template>

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { computed, provide, withDefaults } from 'vue'
+import { shallowRef, computed, provide, withDefaults } from 'vue'
 import Ajv, { Options } from 'ajv'
 import i18n from 'ajv-i18n'
 
-import { ISchemaFormContext, Schema, ITheme } from './types'
+import { ISchemaFormContext, Schema, ITheme, ErrorSchema } from './types'
 import SchemaItems from './SchemaItems.vue'
 import { schemaFormContextKey } from './symbol'
 import { useModelWrapper } from './utils'
@@ -27,6 +27,7 @@ const emit = defineEmits<{
 }>()
 
 const theModel = useModelWrapper(props, emit)
+const errorSchemaRef = shallowRef<ErrorSchema>({})
 
 const context = {
     SchemaItems,
@@ -52,12 +53,16 @@ function handleChange(v: unknown) {
 }
 
 function validate() {
-    return validateFormData(
+    const result = validateFormData(
         validator.value,
         theModel.value,
         props.schema,
         props.locale
     )
+
+    errorSchemaRef.value = result.errorSchema
+
+    return result
 }
 
 defineExpose({ validate })
@@ -67,6 +72,7 @@ defineExpose({ validate })
     <SchemaItems
         :schema="schema"
         :uiSchema="uiSchema"
+        :errorSchema="errorSchemaRef"
         :value="theModel"
         @change="handleChange"
     />
