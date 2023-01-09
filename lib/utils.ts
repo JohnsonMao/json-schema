@@ -1,4 +1,14 @@
-import { computed, inject, InjectionKey, WritableComputedRef } from 'vue'
+import {
+    computed,
+    inject,
+    InjectionKey,
+    WritableComputedRef,
+    defineComponent,
+    useAttrs,
+    h
+} from 'vue'
+import { DefineWidget, DefineOptionsWidget } from './types'
+import FormItemWidget from './widgets/FormItemWidget.vue'
 
 export function injectStrict<T>(key: InjectionKey<T>, fallback?: T) {
     const resolved = inject(key, fallback)
@@ -21,5 +31,18 @@ export function useModelWrapper<
     return computed({
         get: () => props[name],
         set: (value) => emit(`update:${name}`, value)
+    })
+}
+
+export function withFormItem(Widget: DefineWidget | DefineOptionsWidget) {
+    return defineComponent({
+        name: `Wrapped${Widget.name}`,
+        setup() {
+            const attr = useAttrs()
+
+            return () => {
+                return h(FormItemWidget, attr, [h(Widget, attr)])
+            }
+        }
     })
 }

@@ -93,8 +93,9 @@ const ArrayItemWrapper = defineComponent({
     </template>
     <template v-else-if="schema.items?.enum">
         <MultiSelectWidget
+            :schema="schema"
             :value="value"
-            :error="errorSchema.__errors"
+            :errors="errorSchema.__errors"
             :options="schema.items.enum.map((v) => ({ label: v, value: v }))"
             @change="(v) => selectionArray(v)"
         />

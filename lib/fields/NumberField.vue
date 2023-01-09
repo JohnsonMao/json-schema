@@ -18,8 +18,9 @@ function handleChange(value: number | null) {
 
 <template>
     <NumberWidget
+        :schema="schema"
         :value="value"
-        :error="errorSchema.__errors"
+        :errors="errorSchema.__errors"
         @change="handleChange"
     />
 </template>

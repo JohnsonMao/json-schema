@@ -16,6 +16,7 @@ export interface Schema {
     format?: string
     label?: string
     default?: unknown
+    title?: string
 
     properties?: {
         [key: string]: Schema
@@ -89,8 +90,11 @@ export const DefineArrayProps = {
 
 export const DefineWidgetProps = {
     value: {},
-    error: {
+    errors: {
         type: Array as PropType<string[]>
+    },
+    schema: {
+        type: Object as PropType<Schema>
     }
 } as const
 
@@ -98,12 +102,12 @@ export const DefineOptionsWidgetProps = {
     ...DefineWidgetProps,
     options: {
         type: Array as PropType<{ label: string; value: unknown }[]>,
-        required: true
+        default: () => ([])
     }
 } as const
 
-type DefineWidget = DefineComponent<typeof DefineWidgetProps>
-type DefineOptionsWidget = DefineComponent<typeof DefineOptionsWidgetProps>
+export type DefineWidget = DefineComponent<typeof DefineWidgetProps>
+export type DefineOptionsWidget = DefineComponent<typeof DefineOptionsWidgetProps>
 
 export enum widgetsName {
     MultiSelectWidget = 'MultiSelectWidget',
@@ -111,12 +115,14 @@ export enum widgetsName {
     NumberWidget = 'NumberWidget'
 }
 
+export interface IWidgets {
+    [widgetsName.MultiSelectWidget]: DefineOptionsWidget
+    [widgetsName.TextWidget]: DefineWidget
+    [widgetsName.NumberWidget]: DefineWidget
+}
+
 export interface ITheme {
-    widgets: {
-        [widgetsName.MultiSelectWidget]: DefineOptionsWidget
-        [widgetsName.TextWidget]: DefineWidget
-        [widgetsName.NumberWidget]: DefineWidget
-    }
+    widgets: IWidgets
 }
 
 export interface ISchemaFormContext {
