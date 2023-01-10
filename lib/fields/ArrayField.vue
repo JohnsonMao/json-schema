@@ -97,7 +97,7 @@ const ArrayItemWrapper = defineComponent({
             :value="value"
             :errors="errorSchema.__errors"
             :options="schema.items.enum.map((v) => ({ label: v, value: v }))"
-            @change="(v) => selectionArray(v)"
+            @change="selectionArray"
         />
     </template>
     <template v-else-if="schema.items">

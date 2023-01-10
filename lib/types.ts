@@ -1,5 +1,6 @@
 import { PropType, DefineComponent } from 'vue'
 import { ErrorObject } from 'ajv'
+import { withFormItemWidget } from './theme'
 
 export enum SchemaType {
     'NUMBER' = 'number',
@@ -106,9 +107,6 @@ export const DefineOptionsWidgetProps = {
     }
 } as const
 
-export type DefineWidget = DefineComponent<typeof DefineWidgetProps>
-export type DefineOptionsWidget = DefineComponent<typeof DefineOptionsWidgetProps>
-
 export enum widgetsName {
     MultiSelectWidget = 'MultiSelectWidget',
     TextWidget = 'TextWidget',
@@ -116,9 +114,9 @@ export enum widgetsName {
 }
 
 export interface IWidgets {
-    [widgetsName.MultiSelectWidget]: DefineOptionsWidget
-    [widgetsName.TextWidget]: DefineWidget
-    [widgetsName.NumberWidget]: DefineWidget
+    [widgetsName.MultiSelectWidget]: withFormItemWidget
+    [widgetsName.TextWidget]: withFormItemWidget
+    [widgetsName.NumberWidget]: withFormItemWidget
 }
 
 export interface ITheme {
