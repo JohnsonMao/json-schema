@@ -1,8 +1,9 @@
-import { DefineComponent, defineComponent, useAttrs, h } from 'vue'
+import { DefineComponent, defineComponent, h } from 'vue'
 import FormItemWidget from '../widgets/FormItemWidget.vue'
 import MultiSelectWidget from '../widgets/MultiSelectWidget.vue'
 import TextWidget from '../widgets/TextWidget.vue'
 import NumberWidget from '../widgets/NumberWidget.vue'
+import { DefineFieldProps } from '../types'
 
 type Widget =
     | typeof MultiSelectWidget
@@ -15,11 +16,18 @@ export type withFormItemWidget = ReturnType<typeof withFormItem>
 export function withFormItem(Widget: Widget) {
     return defineComponent({
         name: `Wrapped${Widget.name}`,
-        setup() {
-            const attrs = useAttrs()
+        props: DefineFieldProps,
+        emits: ['change'],
+        setup(props, { emit, slots, attrs }) {
+            const onChange = (v: unknown) => emit('change', v)
 
             return () => {
-                return h(FormItemWidget, attrs, () => [h(Widget, attrs)])
+                return h(FormItemWidget, props, () => [h(Widget, {
+                    ...props,
+                    ...attrs,
+                    ...slots,
+                    onChange
+                })])
             }
         }
     })

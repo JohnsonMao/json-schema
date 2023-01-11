@@ -1,5 +1,6 @@
 import { PropType, DefineComponent } from 'vue'
-import { ErrorObject } from 'ajv'
+import Ajv, { ErrorObject } from 'ajv'
+import i18n from 'Ajv-i18n'
 import { withFormItemWidget } from './theme'
 
 export enum SchemaType {
@@ -103,7 +104,7 @@ export const DefineOptionsWidgetProps = {
     ...DefineWidgetProps,
     options: {
         type: Array as PropType<{ label: string; value: unknown }[]>,
-        default: () => ([])
+        default: () => []
     }
 } as const
 
@@ -126,4 +127,14 @@ export interface ITheme {
 export interface ISchemaFormContext {
     readonly SchemaItems: DefineComponent<typeof DefineFieldProps>
     readonly theme: ITheme
+}
+
+export type CustomValidate = (data: unknown, errors: unknown) => void
+
+export interface IValidateParam {
+    validator: Ajv
+    formData: unknown
+    schema: Schema
+    locale: keyof typeof i18n
+    customValidate?: CustomValidate
 }

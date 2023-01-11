@@ -1,6 +1,6 @@
 import Ajv from 'ajv'
 import i18n from 'Ajv-i18n'
-import { Schema, Errors, ErrorSchema } from './types'
+import { Errors, ErrorSchema, IValidateParam } from './types'
 
 function transformErrors(errors: Ajv['errors']): Errors {
     if (errors == null) return []
@@ -43,12 +43,15 @@ function toErrorSchema(errors: Errors) {
     }, {} as ErrorSchema)
 }
 
-export function validateFormData(
-    validator: Ajv,
-    formData: unknown,
-    schema: Schema,
-    locale: keyof typeof i18n
-) {
+export function validateFormData(validateParam: IValidateParam) {
+    const {
+        validator,
+        formData,
+        schema,
+        locale = 'zh-TW',
+        customValidate
+    } = validateParam
+
     let validationError = ''
     try {
         validator.validate(schema, formData)
@@ -65,6 +68,16 @@ export function validateFormData(
     }
 
     const errorSchema = toErrorSchema(errors)
+
+    if (!customValidate) {
+        return {
+            errors,
+            errorSchema,
+            valid: errors.length === 0
+        }
+    }
+
+    customValidate(formData, errors)
 
     return {
         errors,

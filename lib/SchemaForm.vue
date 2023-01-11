@@ -3,11 +3,17 @@ import { shallowRef, computed, provide, withDefaults } from 'vue'
 import Ajv, { Options } from 'ajv'
 import i18n from 'ajv-i18n'
 
-import { ISchemaFormContext, Schema, ITheme, ErrorSchema } from './types'
 import SchemaItems from './SchemaItems.vue'
 import { schemaFormContextKey } from './symbol'
 import { useModelWrapper } from './utils'
 import { validateFormData } from './validator'
+import {
+    ISchemaFormContext,
+    CustomValidate,
+    Schema,
+    ITheme,
+    ErrorSchema
+} from './types'
 
 interface IProps {
     schema: Schema
@@ -16,6 +22,7 @@ interface IProps {
     theme: ITheme
     ajvOptions?: Options
     locale?: keyof typeof i18n
+    customValidate?: CustomValidate
 }
 
 const props = withDefaults(defineProps<IProps>(), {
@@ -53,12 +60,13 @@ function handleChange(v: unknown) {
 }
 
 function validate() {
-    const result = validateFormData(
-        validator.value,
-        theModel.value,
-        props.schema,
-        props.locale
-    )
+    const result = validateFormData({
+        validator: validator.value,
+        formData: theModel.value,
+        schema: props.schema,
+        locale: props.locale,
+        customValidate: props.customValidate
+    })
 
     errorSchemaRef.value = result.errorSchema
 
