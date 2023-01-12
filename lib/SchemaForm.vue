@@ -59,8 +59,8 @@ function handleChange(v: unknown) {
     theModel.value = v
 }
 
-function validate() {
-    const result = validateFormData({
+async function validate() {
+    const result = await validateFormData({
         validator: validator.value,
         formData: theModel.value,
         schema: props.schema,

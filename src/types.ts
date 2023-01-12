@@ -1,3 +1,4 @@
+import { CustomValidate } from '../lib/types'
 import { Schema } from '../lib'
 
 export interface IDemo {
@@ -5,4 +6,5 @@ export interface IDemo {
     schema: Schema
     uiSchema: Record<string, unknown>
     value: unknown
+    customValidate?: CustomValidate
 }

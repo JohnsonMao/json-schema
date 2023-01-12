@@ -5,12 +5,19 @@ export default {
     schema: {
         type: 'object',
         properties: {
-            name: {
+            password: {
+                title: 'Password',
                 type: 'string'
             },
-            age: {
-                type: 'number'
+            retryPassword: {
+                title: 'Retry Password',
+                type: 'string'
             }
+        }
+    },
+    customValidate: (data, errors) => {
+        if (data.password !== data.retryPassword) {
+            errors.retryPassword.addError('密碼必須相同')
         }
     },
     uiSchema: {},

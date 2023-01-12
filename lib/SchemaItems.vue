@@ -29,7 +29,6 @@ const componentTypeRef = computed(() => {
 
 function handleChange(v: unknown) {
     emit('change', v)
-    console.log(v)
 }
 </script>
 

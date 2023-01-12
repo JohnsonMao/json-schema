@@ -1,6 +1,7 @@
 import Ajv from 'ajv'
 import i18n from 'Ajv-i18n'
 import { Errors, ErrorSchema, IValidateParam } from './types'
+import { mergeObject } from './utils'
 
 function transformErrors(errors: Ajv['errors']): Errors {
     if (errors == null) return []
@@ -43,7 +44,33 @@ function toErrorSchema(errors: Errors) {
     }, {} as ErrorSchema)
 }
 
-export function validateFormData(validateParam: IValidateParam) {
+function createErrorProxy(): ErrorSchema {
+    const raw: ErrorSchema = {}
+
+    return new Proxy(raw, {
+        get(target, key: string, receiver) {
+            if (key === 'addError') {
+                return (msg: string) => {
+                    const __errors = Reflect.get(target, '__errors', receiver)
+                    if (__errors && Array.isArray(__errors)) {
+                        __errors.push(msg)
+                    } else {
+                        target.__errors = [msg]
+                    }
+                }
+            }
+            const res = Reflect.get(target, key, receiver)
+
+            if (res !== undefined) return res
+
+            const p = createErrorProxy()
+            target[key] = p
+            return p
+        }
+    })
+}
+
+export async function validateFormData(validateParam: IValidateParam) {
     const {
         validator,
         formData,
@@ -77,11 +104,15 @@ export function validateFormData(validateParam: IValidateParam) {
         }
     }
 
-    customValidate(formData, errors)
+    const proxy = createErrorProxy()
+
+    await customValidate(formData, proxy)
+
+    const newErrorSchema = mergeObject<ErrorSchema>(errorSchema, proxy, true)
 
     return {
         errors,
-        errorSchema,
+        errorSchema: newErrorSchema,
         valid: errors.length === 0
     }
 }

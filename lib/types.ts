@@ -129,7 +129,7 @@ export interface ISchemaFormContext {
     readonly theme: ITheme
 }
 
-export type CustomValidate = (data: unknown, errors: unknown) => void
+export type CustomValidate = (data: unknown, errors: ErrorSchema) => void
 
 export interface IValidateParam {
     validator: Ajv
