@@ -27,9 +27,9 @@ function handleCode(code: string, key: keyof Omit<IDemo, 'name'>) {
     } catch (err) {}
 }
 
-function handleVaild() {
-    const validion = schemaFormRef.value?.validate()
-    console.log(validion)
+async function handleVaild() {
+    const validion = await schemaFormRef.value?.validate()
+
     errorCodeRef.value = stringify(validion?.errorSchema)
 }
 </script>
@@ -75,6 +75,7 @@ function handleVaild() {
                 :theme="theme"
                 :schema="demo.schema"
                 :uiSchema="demo.uiSchema"
+                :customValidate="demo.customValidate"
             />
             <button @click="handleVaild">驗證</button>
         </div>

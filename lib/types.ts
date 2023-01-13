@@ -53,10 +53,19 @@ export type Errors = (Partial<ErrorObject> & {
     property?: string
 })[]
 
+export type Data<T extends Schema> = T['type'] extends
+    | SchemaType.OBJECT
+    | SchemaType.ARRAY
+    ? { [key in keyof T['properties']]: T['properties'][key] }
+    : unknown
+
+export type AddError = (msg: string) => void
+
 export type ErrorSchema = {
     [key: string]: ErrorSchema
 } & {
     __errors?: string[]
+    addError?: AddError
 }
 
 export const DefineFieldProps = {
@@ -129,7 +138,9 @@ export interface ISchemaFormContext {
     readonly theme: ITheme
 }
 
-export type CustomValidate = (data: unknown, errors: ErrorSchema) => void
+export type CustomValidate<E extends ErrorSchema = ErrorSchema> = {
+    (data: unknown, errors: E): void
+}
 
 export interface IValidateParam {
     validator: Ajv

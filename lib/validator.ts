@@ -1,6 +1,6 @@
 import Ajv from 'ajv'
 import i18n from 'Ajv-i18n'
-import { Errors, ErrorSchema, IValidateParam } from './types'
+import { AddError, Errors, ErrorSchema, IValidateParam } from './types'
 import { mergeObject } from './utils'
 
 function transformErrors(errors: Ajv['errors']): Errors {
@@ -50,22 +50,25 @@ function createErrorProxy(): ErrorSchema {
     return new Proxy(raw, {
         get(target, key: string, receiver) {
             if (key === 'addError') {
-                return (msg: string) => {
+                const addError: AddError = (msg) => {
                     const __errors = Reflect.get(target, '__errors', receiver)
                     if (__errors && Array.isArray(__errors)) {
                         __errors.push(msg)
                     } else {
-                        target.__errors = [msg]
+                        Reflect.set(target, '__errors', [msg], receiver)
                     }
                 }
+                return addError
             }
             const res = Reflect.get(target, key, receiver)
 
-            if (res !== undefined) return res
+            if (res === undefined && key !== 'toJSON') {
+                const p = createErrorProxy()
+                Reflect.set(target, key, p, receiver)
+                return p
+            }
 
-            const p = createErrorProxy()
-            target[key] = p
-            return p
+            return res
         }
     })
 }
