@@ -1,4 +1,10 @@
-import { computed, defineComponent, h } from 'vue'
+import {
+    computed,
+    ComputedRef,
+    defineComponent,
+    ExtractPropTypes,
+    h
+} from 'vue'
 import FormItemWidget from '../widgets/FormItemWidget.vue'
 import MultiSelectWidget from '../widgets/MultiSelectWidget.vue'
 import TextWidget from '../widgets/TextWidget.vue'
@@ -6,11 +12,11 @@ import NumberWidget from '../widgets/NumberWidget.vue'
 import { injectStrict, isObject } from '../utils'
 import { schemaFormContextKey } from '../symbol'
 import {
+    DefineFieldProps,
     DefineWidgetProps,
     widgetsName,
     Widget,
-    ITheme,
-    UISchema
+    ITheme
 } from '../types'
 
 export function withFormItem(Widget: Widget) {
@@ -35,14 +41,25 @@ export function withFormItem(Widget: Widget) {
     })
 }
 
-export function getWidget(name: widgetsName, uiSchema?: UISchema) {
-    const w = uiSchema?.widget
-
-    if (isObject(w)) {
-        return computed(() => w)
-    }
-
+export function getWidget(
+    name: widgetsName,
+    props?: ExtractPropTypes<typeof DefineFieldProps>
+): ComputedRef<ReturnType<typeof withFormItem>> {
     const context = injectStrict(schemaFormContextKey)
+
+    if (props) {
+        const { uiSchema, schema } = props
+        const w = uiSchema?.widget
+        const f = schema.format
+
+        if (isObject(w)) {
+            return computed(() => withFormItem(w))
+        }
+
+        if (f && context.formatMapRef.value[f]) {
+            return computed(() => withFormItem(context.formatMapRef.value[f]))
+        }
+    }
 
     if (!context) throw Error('Json schema theme is required')
 

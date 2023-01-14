@@ -24,6 +24,11 @@ export default {
             retryPassword: {
                 title: 'Retry Password',
                 type: 'string'
+            },
+            color: {
+                title: 'Color',
+                type: 'string',
+                format: 'color'
             }
         }
     },

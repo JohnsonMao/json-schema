@@ -4,7 +4,7 @@ import { DefineFieldProps, widgetsName } from '../types'
 
 const props = defineProps(DefineFieldProps)
 
-const NumberWidget = getWidget(widgetsName.NumberWidget, props.uiSchema)
+const NumberWidget = getWidget(widgetsName.NumberWidget, props)
 
 const emit = defineEmits<{ (event: 'change', value: number | null): void }>()
 

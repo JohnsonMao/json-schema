@@ -5,7 +5,7 @@ import { DefineFieldProps, widgetsName } from '../types'
 
 const props = defineProps(DefineFieldProps)
 
-const TextWidget = getWidget(widgetsName.TextWidget, props.uiSchema)
+const TextWidget = getWidget(widgetsName.TextWidget, props)
 
 const emit = defineEmits<{ (event: 'change', value: string): void }>()
 

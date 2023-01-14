@@ -22,7 +22,9 @@ import {
     Schema,
     UISchema,
     ErrorSchema,
-    AwaitValidateData
+    DefineWidget,
+    AwaitValidateData,
+    CustomFormats
 } from './types'
 
 interface IProps {
@@ -33,6 +35,7 @@ interface IProps {
     ajvOptions?: Options
     locale?: keyof typeof i18n
     customValidate?: CustomValidate
+    customFormats?: CustomFormats[] | CustomFormats
 }
 
 const props = withDefaults(defineProps<IProps>(), {
@@ -46,24 +49,50 @@ const emit = defineEmits<{
 const theModel = useModelWrapper(props, emit)
 const errorSchemaRef = shallowRef<ErrorSchema>({})
 
-const context = {
-    SchemaItems,
-    theme: props.theme
-} as ISchemaFormContext
-
-provide(schemaFormContextKey, context)
-
 const defaultAjvOptions: Options = {
     allErrors: true
 }
 
-const validator = computed(
-    () =>
-        new Ajv({
-            ...defaultAjvOptions,
-            ...props.ajvOptions
-        })
-)
+const validatorRef = computed(() => {
+    const validator = new Ajv({
+        ...defaultAjvOptions,
+        ...props.ajvOptions
+    })
+    // if (props.customFormats) {
+    //     const customFormats = Array.isArray(props.customFormats)
+    //         ? props.customFormats
+    //         : [props.customFormats]
+
+    //     customFormats.forEach((format) => {
+    //         validator.addFormat(format.name, format.definition)
+    //     })
+    // }
+
+    return validator
+})
+
+const formatMapRef = computed<Record<string, DefineWidget>>(() => {
+    if (props.customFormats) {
+        const customFormats = Array.isArray(props.customFormats)
+            ? props.customFormats
+            : [props.customFormats]
+
+        return customFormats.reduce((result, format) => {
+            validatorRef.value.addFormat(format.name, format.definition)
+            result[format.name] = format.component
+            return result
+        }, {} as Record<string, DefineWidget>)
+    }
+    return {}
+})
+
+const context = {
+    SchemaItems,
+    theme: props.theme,
+    formatMapRef
+} as ISchemaFormContext
+
+provide(schemaFormContextKey, context)
 
 function handleChange(v: unknown) {
     theModel.value = v
@@ -74,9 +103,9 @@ const validateIndex = ref(0)
 const stopWatchRef = ref<WatchStopHandle>()
 
 async function doValidate() {
-    const index = validateIndex.value += 1
+    const index = (validateIndex.value += 1)
     const result = await validateData({
-        validator: validator.value,
+        validator: validatorRef.value,
         data: theModel.value,
         schema: props.schema,
         locale: props.locale,

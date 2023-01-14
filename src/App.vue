@@ -4,6 +4,7 @@ import MonacoEditorVue from './components/MonacoEditor.vue'
 import SchemaForm from '../lib'
 import theme from '../lib/theme'
 import { IDemo } from './types'
+import format from './plugin/customFormat'
 
 const demos = Object.values(
     import.meta.glob<IDemo>('./demos/*.ts', { import: 'default', eager: true })
@@ -76,6 +77,7 @@ async function handleVaild() {
                 :schema="demo.schema"
                 :uiSchema="demo.uiSchema"
                 :customValidate="demo.customValidate"
+                :customFormats="format"
             />
             <button @click="handleVaild">驗證</button>
         </div>

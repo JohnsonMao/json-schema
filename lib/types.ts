@@ -1,5 +1,11 @@
-import { PropType, DefineComponent, CSSProperties } from 'vue'
-import Ajv, { ErrorObject } from 'ajv'
+import {
+    PropType,
+    DefineComponent,
+    CSSProperties,
+    ComputedRef,
+    ExtractPropTypes
+} from 'vue'
+import Ajv, { ErrorObject, FormatDefinition } from 'ajv'
 import i18n from 'Ajv-i18n'
 import { validateData } from './validator'
 
@@ -98,8 +104,12 @@ export enum widgetsName {
     NumberWidget = 'NumberWidget'
 }
 
-export type DefineWidget = DefineComponent<typeof DefineWidgetProps>
-export type DefineOptionsWidget = DefineComponent<typeof DefineOptionsWidgetProps>
+export type DefineWidget = DefineComponent<
+    ExtractPropTypes<typeof DefineWidgetProps>
+>
+export type DefineOptionsWidget = DefineComponent<
+    ExtractPropTypes<typeof DefineOptionsWidgetProps>
+>
 export interface IWidgets {
     [widgetsName.MultiSelectWidget]: DefineOptionsWidget
     [widgetsName.TextWidget]: DefineWidget
@@ -152,8 +162,11 @@ export interface ITheme {
 }
 
 export interface ISchemaFormContext {
-    readonly SchemaItems: DefineComponent<typeof DefineFieldProps>
     readonly theme: ITheme
+    readonly formatMapRef: ComputedRef<Record<string, DefineWidget>>
+    readonly SchemaItems: DefineComponent<
+        ExtractPropTypes<typeof DefineFieldProps>
+    >
 }
 
 export type CustomValidate<E extends ErrorData = ErrorData> = {
@@ -171,3 +184,9 @@ export interface IValidateParam {
 export type AwaitPromise<T> = T extends Promise<infer R> ? R : T
 
 export type AwaitValidateData = AwaitPromise<ReturnType<typeof validateData>>
+
+export interface CustomFormats {
+    name: string
+    definition: FormatDefinition<string | number>
+    component: DefineWidget
+}

@@ -11,10 +11,7 @@ const emit = defineEmits<{ (event: 'change', value: unknown[]): void }>()
 
 const context = injectStrict(schemaFormContextKey)
 const { SchemaItems } = context
-const MultiSelectWidget = getWidget(
-    widgetsName.MultiSelectWidget,
-    props.uiSchema
-)
+const MultiSelectWidget = getWidget(widgetsName.MultiSelectWidget, props)
 
 function handleChange(index: number, v: unknown) {
     const value = props.value
