@@ -1,16 +1,20 @@
 <script setup lang="ts">
 import { defineComponent, h } from 'vue'
-import { DefineArrayProps } from '../types'
+import { DefineArrayProps, widgetsName } from '../types'
 import { schemaFormContextKey } from '../symbol'
 import { injectStrict } from '../utils'
+import { getWidget } from '../theme'
 
 const props = defineProps(DefineArrayProps)
 
 const emit = defineEmits<{ (event: 'change', value: unknown[]): void }>()
 
 const context = injectStrict(schemaFormContextKey)
-const { SchemaItems, theme } = context
-const { MultiSelectWidget } = theme.widgets
+const { SchemaItems } = context
+const MultiSelectWidget = getWidget(
+    widgetsName.MultiSelectWidget,
+    props.uiSchema
+)
 
 function handleChange(index: number, v: unknown) {
     const value = props.value
@@ -84,7 +88,11 @@ const ArrayItemWrapper = defineComponent({
         <SchemaItems
             v-for="(item, index) in schema.items"
             :schema="item"
-            :uiSchema="uiSchema"
+            :uiSchema="
+                Array.isArray(uiSchema?.items)
+                    ? uiSchema?.items?.[index]
+                    : uiSchema?.items
+            "
             :errorSchema="errorSchema[index]"
             :value="value[index]"
             :key="index"
@@ -108,7 +116,9 @@ const ArrayItemWrapper = defineComponent({
         >
             <SchemaItems
                 :schema="schema.items"
-                :uiSchema="uiSchema"
+                :uiSchema="
+                    Array.isArray(uiSchema?.items) ? {} : uiSchema?.items
+                "
                 :errorSchema="errorSchema[index]"
                 :value="itemValue"
                 @change="(v) => handleChange(index, v)"

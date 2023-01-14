@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import { schemaFormContextKey } from '../symbol'
-import { DefineFieldProps } from '../types'
-import { injectStrict } from '../utils'
+import { getWidget } from '../theme'
+import { DefineFieldProps, widgetsName } from '../types'
 
-defineProps(DefineFieldProps)
+const props = defineProps(DefineFieldProps)
 
-const context = injectStrict(schemaFormContextKey)
-const { theme } = context
-const { NumberWidget } = theme.widgets
+const NumberWidget = getWidget(widgetsName.NumberWidget, props.uiSchema)
 
 const emit = defineEmits<{ (event: 'change', value: number | null): void }>()
 

@@ -1,10 +1,9 @@
-import { CustomValidate } from '../lib/types'
-import { Schema } from '../lib'
+import { CustomValidate, Schema, UISchema } from '../lib'
 
 export interface IDemo {
     name: string
     schema: Schema
-    uiSchema: Record<string, unknown>
+    uiSchema?: UISchema
     value: unknown
     customValidate?: CustomValidate
 }

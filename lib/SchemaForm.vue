@@ -18,15 +18,16 @@ import { validateData } from './validator'
 import {
     ISchemaFormContext,
     CustomValidate,
-    Schema,
     ITheme,
+    Schema,
+    UISchema,
     ErrorSchema,
     AwaitValidateData
 } from './types'
 
 interface IProps {
     schema: Schema
-    uiSchema: Record<string, unknown>
+    uiSchema?: UISchema
     modelValue: unknown
     theme: ITheme
     ajvOptions?: Options

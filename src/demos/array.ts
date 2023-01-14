@@ -33,7 +33,17 @@ export default {
             }
         }
     },
-    uiSchema: {},
+    uiSchema: {
+        properties: {
+            hobby: {
+                items: {
+                    style: {
+                        color: 'red'
+                    }
+                }
+            }
+        }
+    },
     value: {
         hobby: ['Coding']
     }

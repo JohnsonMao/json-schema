@@ -28,7 +28,7 @@ function handleChange(key: string | number, v: unknown) {
     <SchemaItems
         v-for="(prop, key) in schema?.properties || {}"
         :schema="prop"
-        :uiSchema="uiSchema"
+        :uiSchema="uiSchema?.properties?.[key]"
         :value="value[key]"
         :errorSchema="errorSchema[key]"
         :key="key"

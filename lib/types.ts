@@ -1,7 +1,6 @@
-import { PropType, DefineComponent } from 'vue'
+import { PropType, DefineComponent, CSSProperties } from 'vue'
 import Ajv, { ErrorObject } from 'ajv'
 import i18n from 'Ajv-i18n'
-import { withFormItemWidget } from './theme'
 import { validateData } from './validator'
 
 export enum SchemaType {
@@ -49,6 +48,12 @@ export interface Schema {
     exclusiveMinimum?: number
 }
 
+type WidgetConfig = {
+    style?: string | CSSProperties
+    class?: unknown
+    [key: string]: unknown
+}
+
 export type Errors = (Partial<ErrorObject> & {
     name?: string
     property?: string
@@ -66,13 +71,58 @@ export type ErrorData<T = { addError?: AddError }> = {
 
 export type ErrorSchema = ErrorData & ErrorFields
 
+export const DefineWidgetProps = {
+    value: {},
+    errors: {
+        type: Array as PropType<string[]>
+    },
+    schema: {
+        type: Object as PropType<Schema>
+    },
+    config: {
+        type: Object as PropType<WidgetConfig>
+    }
+} as const
+
+export const DefineOptionsWidgetProps = {
+    ...DefineWidgetProps,
+    options: {
+        type: Array as PropType<{ label: string; value: unknown }[]>,
+        default: () => []
+    }
+} as const
+
+export enum widgetsName {
+    MultiSelectWidget = 'MultiSelectWidget',
+    TextWidget = 'TextWidget',
+    NumberWidget = 'NumberWidget'
+}
+
+export type DefineWidget = DefineComponent<typeof DefineWidgetProps>
+export type DefineOptionsWidget = DefineComponent<typeof DefineOptionsWidgetProps>
+export interface IWidgets {
+    [widgetsName.MultiSelectWidget]: DefineOptionsWidget
+    [widgetsName.TextWidget]: DefineWidget
+    [widgetsName.NumberWidget]: DefineWidget
+}
+
+export type Widget = DefineWidget | DefineOptionsWidget | DefineComponent
+
+export type UISchema = {
+    widget?: string | Widget
+    properties?: {
+        [key: string]: UISchema
+    }
+    items?: UISchema | UISchema[]
+} & WidgetConfig
+
 export const DefineFieldProps = {
     schema: {
         type: Object as PropType<Schema>,
         required: true
     },
     uiSchema: {
-        type: Object as PropType<Record<string, unknown>>
+        type: Object as PropType<UISchema>
     },
     errorSchema: {
         type: Object as PropType<ErrorSchema>,
@@ -96,36 +146,6 @@ export const DefineArrayProps = {
         default: () => []
     }
 } as const
-
-export const DefineWidgetProps = {
-    value: {},
-    errors: {
-        type: Array as PropType<string[]>
-    },
-    schema: {
-        type: Object as PropType<Schema>
-    }
-} as const
-
-export const DefineOptionsWidgetProps = {
-    ...DefineWidgetProps,
-    options: {
-        type: Array as PropType<{ label: string; value: unknown }[]>,
-        default: () => []
-    }
-} as const
-
-export enum widgetsName {
-    MultiSelectWidget = 'MultiSelectWidget',
-    TextWidget = 'TextWidget',
-    NumberWidget = 'NumberWidget'
-}
-
-export interface IWidgets {
-    [widgetsName.MultiSelectWidget]: withFormItemWidget
-    [widgetsName.TextWidget]: withFormItemWidget
-    [widgetsName.NumberWidget]: withFormItemWidget
-}
 
 export interface ITheme {
     widgets: IWidgets

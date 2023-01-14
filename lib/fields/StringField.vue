@@ -1,15 +1,21 @@
 <script setup lang="ts">
-import { schemaFormContextKey } from '../symbol'
-import { DefineFieldProps } from '../types'
-import { injectStrict } from '../utils'
+import { computed } from 'vue'
+import { getWidget } from '../theme'
+import { DefineFieldProps, widgetsName } from '../types'
 
-defineProps(DefineFieldProps)
+const props = defineProps(DefineFieldProps)
 
-const context = injectStrict(schemaFormContextKey)
-const { theme } = context
-const { TextWidget } = theme.widgets
+const TextWidget = getWidget(widgetsName.TextWidget, props.uiSchema)
 
 const emit = defineEmits<{ (event: 'change', value: string): void }>()
+
+const configRef = computed(() => {
+    if (!props.uiSchema) return
+
+    const { widget, items, properties, ...config } = props.uiSchema
+
+    return { widget, items, properties, config }
+})
 
 function handleChange(value: string) {
     emit('change', value)
@@ -21,6 +27,7 @@ function handleChange(value: string) {
         :schema="schema"
         :value="value"
         :errors="errorSchema.__errors"
+        :config="configRef?.config"
         @change="handleChange"
     />
 </template>

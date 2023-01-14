@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { DefineWidgetProps } from '../types'
 
-defineProps(DefineWidgetProps)
+const props = defineProps(DefineWidgetProps)
 
 const emit = defineEmits<{ (event: 'change', value: string): void }>()
 
@@ -10,8 +11,17 @@ function handleChange(e: Event) {
 
     emit('change', value)
 }
+
+const styleRef = computed(() => props.config?.style)
+const classRef = computed(() => props.config?.class)
 </script>
 
 <template>
-    <input type="text" :value="value" @input="handleChange" />
+    <input
+        type="text"
+        :value="value"
+        :style="styleRef"
+        :class="classRef"
+        @input="handleChange"
+    />
 </template>

@@ -1,4 +1,6 @@
-import { CustomValidate, ErrorData } from '../../lib/types'
+import { DefineComponent } from 'vue'
+import { CustomValidate, ErrorData } from '../../lib'
+import PasswordWidget from '../components/PasswordWidget.vue'
 import { IDemo } from '../types'
 
 interface IData {
@@ -35,6 +37,15 @@ export default {
             }, 2000)
         })
     },
-    uiSchema: {},
+    uiSchema: {
+        properties: {
+            password: {
+                widget: PasswordWidget as DefineComponent
+            },
+            retryPassword: {
+                widget: PasswordWidget as DefineComponent
+            }
+        }
+    },
     value: {}
 } as IDemo & { customValidate: CustomValidate<IErrors> }
