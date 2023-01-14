@@ -1,7 +1,13 @@
 import Ajv from 'ajv'
 import i18n from 'Ajv-i18n'
-import { AddError, Errors, ErrorSchema, IValidateParam } from './types'
 import { mergeObject } from './utils'
+import {
+    AddError,
+    Errors,
+    ErrorData,
+    ErrorSchema,
+    IValidateParam
+} from './types'
 
 function transformErrors(errors: Ajv['errors']): Errors {
     if (errors == null) return []
@@ -44,8 +50,8 @@ function toErrorSchema(errors: Errors) {
     }, {} as ErrorSchema)
 }
 
-function createErrorProxy(): ErrorSchema {
-    const raw: ErrorSchema = {}
+function createErrorProxy(): ErrorData {
+    const raw: ErrorData = {}
 
     return new Proxy(raw, {
         get(target, key: string, receiver) {
@@ -73,10 +79,10 @@ function createErrorProxy(): ErrorSchema {
     })
 }
 
-export async function validateFormData(validateParam: IValidateParam) {
+export async function validateData(validateParam: IValidateParam) {
     const {
         validator,
-        formData,
+        data,
         schema,
         locale = 'zh-TW',
         customValidate
@@ -84,7 +90,7 @@ export async function validateFormData(validateParam: IValidateParam) {
 
     let validationError = ''
     try {
-        validator.validate(schema, formData)
+        validator.validate(schema, data)
     } catch (err) {
         if (typeof err === 'string') validationError = err
         if (err instanceof Error) validationError = err.message
@@ -109,7 +115,7 @@ export async function validateFormData(validateParam: IValidateParam) {
 
     const proxy = createErrorProxy()
 
-    await customValidate(formData, proxy)
+    await customValidate(data, proxy)
 
     const newErrorSchema = mergeObject<ErrorSchema>(errorSchema, proxy, true)
 

@@ -2,6 +2,7 @@ import { PropType, DefineComponent } from 'vue'
 import Ajv, { ErrorObject } from 'ajv'
 import i18n from 'Ajv-i18n'
 import { withFormItemWidget } from './theme'
+import { validateData } from './validator'
 
 export enum SchemaType {
     'NUMBER' = 'number',
@@ -53,20 +54,17 @@ export type Errors = (Partial<ErrorObject> & {
     property?: string
 })[]
 
-export type Data<T extends Schema> = T['type'] extends
-    | SchemaType.OBJECT
-    | SchemaType.ARRAY
-    ? { [key in keyof T['properties']]: T['properties'][key] }
-    : unknown
-
 export type AddError = (msg: string) => void
 
-export type ErrorSchema = {
-    [key: string]: ErrorSchema
-} & {
+export type ErrorFields = {
     __errors?: string[]
-    addError?: AddError
 }
+
+export type ErrorData<T = { addError?: AddError }> = {
+    [key: string]: ErrorData
+} & T
+
+export type ErrorSchema = ErrorData & ErrorFields
 
 export const DefineFieldProps = {
     schema: {
@@ -138,14 +136,18 @@ export interface ISchemaFormContext {
     readonly theme: ITheme
 }
 
-export type CustomValidate<E extends ErrorSchema = ErrorSchema> = {
+export type CustomValidate<E extends ErrorData = ErrorData> = {
     (data: unknown, errors: E): void
 }
 
 export interface IValidateParam {
     validator: Ajv
-    formData: unknown
+    data: unknown
     schema: Schema
     locale: keyof typeof i18n
     customValidate?: CustomValidate
 }
+
+export type AwaitPromise<T> = T extends Promise<infer R> ? R : T
+
+export type AwaitValidateData = AwaitPromise<ReturnType<typeof validateData>>

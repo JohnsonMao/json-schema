@@ -1,18 +1,27 @@
 <script setup lang="ts">
-import { shallowRef, computed, provide, withDefaults } from 'vue'
+import {
+    ref,
+    shallowRef,
+    computed,
+    provide,
+    withDefaults,
+    watch,
+    WatchStopHandle
+} from 'vue'
 import Ajv, { Options } from 'ajv'
 import i18n from 'ajv-i18n'
 
 import SchemaItems from './SchemaItems.vue'
 import { schemaFormContextKey } from './symbol'
 import { useModelWrapper } from './utils'
-import { validateFormData } from './validator'
+import { validateData } from './validator'
 import {
     ISchemaFormContext,
     CustomValidate,
     Schema,
     ITheme,
-    ErrorSchema
+    ErrorSchema,
+    AwaitValidateData
 } from './types'
 
 interface IProps {
@@ -59,18 +68,44 @@ function handleChange(v: unknown) {
     theModel.value = v
 }
 
-async function validate() {
-    const result = await validateFormData({
+const validateResolveRef = ref<(result: AwaitValidateData) => void>()
+const validateIndex = ref(0)
+const stopWatchRef = ref<WatchStopHandle>()
+
+async function doValidate() {
+    const index = validateIndex.value += 1
+    const result = await validateData({
         validator: validator.value,
-        formData: theModel.value,
+        data: theModel.value,
         schema: props.schema,
         locale: props.locale,
         customValidate: props.customValidate
     })
 
+    if (index !== validateIndex.value) return
+
     errorSchemaRef.value = result.errorSchema
 
-    return result
+    validateResolveRef.value?.(result)
+    validateResolveRef.value = undefined
+    stopWatchRef.value?.()
+    stopWatchRef.value = undefined
+}
+
+function validate() {
+    return new Promise<AwaitValidateData>((resolve) => {
+        validateResolveRef.value = resolve
+        stopWatchRef.value = watch(
+            theModel,
+            () => {
+                if (validateResolveRef.value) {
+                    doValidate()
+                }
+            },
+            { deep: true }
+        )
+        doValidate()
+    })
 }
 
 defineExpose({ validate })

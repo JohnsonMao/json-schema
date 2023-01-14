@@ -1,13 +1,13 @@
-import { ErrorSchema, CustomValidate } from '../../lib/types'
+import { CustomValidate, ErrorData } from '../../lib/types'
 import { IDemo } from '../types'
 
 interface IData {
-    password: string,
+    password: string
     retryPassword: string
 }
 
 type IErrors = {
-    [key in keyof IData]?: ErrorSchema
+    [key in keyof IData]?: ErrorData
 }
 
 export default {
@@ -25,10 +25,15 @@ export default {
             }
         }
     },
-    customValidate: (data: IData, errors) => {
-        if (data.password !== data.retryPassword) {
-            errors.retryPassword?.addError?.('密碼必須相同')
-        }
+    customValidate: async (data: IData, errors) => {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                if (data.password !== data.retryPassword) {
+                    errors.retryPassword?.addError?.('密碼必須相同')
+                }
+                resolve()
+            }, 2000)
+        })
     },
     uiSchema: {},
     value: {}

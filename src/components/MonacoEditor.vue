@@ -13,6 +13,14 @@ const monacoInstanceRef = shallowRef<ReturnType<typeof Monaco.editor.create>>()
 const monacoRef = ref()
 let monacoListener: Monaco.IDisposable
 
+function resizeLayout() {
+    const { offsetWidth, offsetHeight } = document.body
+    const width = (offsetWidth - 8) / 4
+    const height = (offsetHeight - 66) / 2
+
+    monacoInstanceRef.value?.layout({ width, height })
+}
+
 onMounted(() => {
     const editor = Monaco.editor.create(monacoRef.value, {
         value: props.code,
@@ -20,7 +28,6 @@ onMounted(() => {
         formatOnPaste: true,
         tabSize: 2,
         theme: 'vs-dark',
-        automaticLayout: true,
         minimap: {
             enabled: false
         }
@@ -31,10 +38,12 @@ onMounted(() => {
 
         emit('change', code)
     })
+    window.addEventListener('resize', resizeLayout)
 })
 
 onBeforeUnmount(() => {
     if (monacoListener) monacoListener.dispose()
+    window.removeEventListener('resize', resizeLayout)
 })
 
 watchEffect(() => {
