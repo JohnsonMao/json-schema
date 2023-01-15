@@ -1,4 +1,6 @@
 name: test-coverage
+env:
+  CODECOV_VERSION: 'v0.1.15'
 
 on: [push]
 
@@ -28,4 +30,5 @@ jobs:
         with:
           flags: unit-tests
           file: ./coverage/clover.xml
+          version: ${{ env.CODECOV_VERSION }}
           fail_ci_if_error: true
