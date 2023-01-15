@@ -27,7 +27,7 @@ describe('SchemaForm', () => {
                     ]
                 },
                 uiSchema: array.uiSchema,
-                value: []
+                modelValue: []
             }
         })
 
@@ -55,7 +55,8 @@ describe('SchemaForm', () => {
                         enum: ['English', 'Chinese', 'Japanese']
                     }
                 },
-                uiSchema: array.uiSchema
+                uiSchema: array.uiSchema,
+                modelValue: []
             }
         })
 
@@ -85,7 +86,7 @@ describe('SchemaForm', () => {
                     }
                 },
                 uiSchema: array.uiSchema,
-                value: ['Apple']
+                modelValue: ['Apple']
             }
         })
 

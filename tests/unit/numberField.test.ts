@@ -17,7 +17,7 @@ describe('SchemaForm', () => {
                 theme,
                 schema: number.schema,
                 uiSchema: number.uiSchema,
-                value: number.value
+                modelValue: number.value
             }
         })
     })

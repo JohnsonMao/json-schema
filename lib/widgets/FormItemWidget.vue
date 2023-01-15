@@ -28,6 +28,7 @@ defineProps(DefineWidgetProps)
     label {
         flex: 1;
         text-align: right;
+        color: #eee;
     }
 
     div {

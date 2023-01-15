@@ -14,6 +14,7 @@ describe('SchemaForm', () => {
     beforeEach(() => {
         wrapper = mount(SchemaForm, {
             props: {
+                modelValue: {},
                 theme,
                 schema: object.schema,
                 uiSchema: object.uiSchema

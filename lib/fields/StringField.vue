@@ -5,7 +5,7 @@ import { DefineFieldProps, widgetsName } from '../types'
 
 const props = defineProps(DefineFieldProps)
 
-const TextWidget = getWidget(widgetsName.TextWidget, props)
+const Widget = getWidget(widgetsName.TextWidget, props)
 
 const emit = defineEmits<{ (event: 'change', value: string): void }>()
 
@@ -27,7 +27,7 @@ function handleChange(value: string) {
 </script>
 
 <template>
-    <TextWidget
+    <Widget
         :schema="schema"
         :value="value"
         :errors="errorSchema.__errors"

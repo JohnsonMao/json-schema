@@ -11,7 +11,7 @@ const emit = defineEmits<{ (event: 'change', value: unknown[]): void }>()
 
 const context = injectStrict(schemaFormContextKey)
 const { SchemaItems } = context
-const MultiSelectWidget = getWidget(widgetsName.MultiSelectWidget, props)
+const Widget = getWidget(widgetsName.MultiSelectWidget, props)
 
 function handleChange(index: number, v: unknown) {
     const value = props.value
@@ -109,7 +109,7 @@ const ArrayItemWrapper = defineComponent({
         />
     </template>
     <template v-else-if="schema.items?.enum">
-        <MultiSelectWidget
+        <Widget
             :schema="schema"
             :value="value"
             :errors="errorSchema.__errors"
