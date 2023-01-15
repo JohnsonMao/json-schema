@@ -26,9 +26,9 @@ jobs:
           CI: true
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+      - uses: codecov/codecov-action@v3
         with:
-          flags: unit-tests
+          flags: unittests
           file: ./coverage/clover.xml
           version: ${{ env.CODECOV_VERSION }}
           fail_ci_if_error: true
