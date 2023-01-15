@@ -9,6 +9,7 @@
     "start": "vite",
     "dev": "vite",
     "build": "vue-tsc && vite build",
+    "build:demo": "vue-tsc && vite build --mode demo",
     "preview": "vite preview",
     "test": "vitest",
     "coverage": "vitest run --coverage"
