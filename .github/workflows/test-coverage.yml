@@ -1,4 +1,5 @@
-name: test-coverage
+name: Test Coverage
+
 env:
   CODECOV_VERSION: 'v0.1.15'
 
@@ -11,11 +12,11 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x]
-        os: [windows-latest, macos-latest]
+        os: [windows-latest]
 
     steps:
-      - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }} 🛎️
+        uses: actions/checkout@v3
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
@@ -26,7 +27,7 @@ jobs:
           CI: true
 
       - name: Upload coverage to Codecov
-      - uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v3
         with:
           flags: unittests
           file: ./coverage/clover.xml
