@@ -16,7 +16,7 @@ let monacoListener: Monaco.IDisposable
 function resizeLayout() {
     const { offsetWidth, offsetHeight } = document.body
     const width = (offsetWidth - 8) / 4
-    const height = (offsetHeight - 66) / 2
+    const height = (offsetHeight - 76) / 2
 
     monacoInstanceRef.value?.layout({ width, height })
 }

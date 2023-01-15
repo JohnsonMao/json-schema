@@ -13,7 +13,7 @@ import i18n from 'ajv-i18n'
 
 import SchemaItems from './SchemaItems.vue'
 import { schemaFormContextKey } from './symbol'
-import { useModelWrapper } from './utils'
+import { useModelWrapper, toArray } from './utils'
 import { validateData } from './validator'
 import {
     ISchemaFormContext,
@@ -24,7 +24,7 @@ import {
     ErrorSchema,
     DefineWidget,
     AwaitValidateData,
-    CustomFormats
+    CustomFormat
 } from './types'
 
 interface IProps {
@@ -35,7 +35,7 @@ interface IProps {
     ajvOptions?: Options
     locale?: keyof typeof i18n
     customValidate?: CustomValidate
-    customFormats?: CustomFormats[] | CustomFormats
+    customFormats?: CustomFormat
 }
 
 const props = withDefaults(defineProps<IProps>(), {
@@ -58,24 +58,13 @@ const validatorRef = computed(() => {
         ...defaultAjvOptions,
         ...props.ajvOptions
     })
-    // if (props.customFormats) {
-    //     const customFormats = Array.isArray(props.customFormats)
-    //         ? props.customFormats
-    //         : [props.customFormats]
-
-    //     customFormats.forEach((format) => {
-    //         validator.addFormat(format.name, format.definition)
-    //     })
-    // }
 
     return validator
 })
 
 const formatMapRef = computed<Record<string, DefineWidget>>(() => {
     if (props.customFormats) {
-        const customFormats = Array.isArray(props.customFormats)
-            ? props.customFormats
-            : [props.customFormats]
+        const customFormats = toArray<CustomFormat>(props.customFormats)
 
         return customFormats.reduce((result, format) => {
             validatorRef.value.addFormat(format.name, format.definition)

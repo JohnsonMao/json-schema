@@ -59,22 +59,34 @@ const ArrayItemWrapper = defineComponent({
             emit('change', (e.target as HTMLElement).id)
         }
         return () => {
-            return h('div', null, [
-                h(
-                    'div',
-                    {
-                        style: 'display: flex; gap: 0.5rem',
-                        onClick: handleClick
-                    },
-                    [
-                        h('button', { id: 'add' }, '增加'),
-                        h('button', { id: 'remove' }, '刪除'),
-                        h('button', { id: 'up' }, '上移'),
-                        h('button', { id: 'down' }, '下移')
-                    ]
-                ),
-                h('div', null, slots.default && slots.default())
-            ])
+            return h(
+                'div',
+                {
+                    style: 'display: flex; gap: 0.5rem; align-items: center'
+                },
+                [
+                    h(
+                        'div',
+                        {
+                            style: 'flex: 1'
+                        },
+                        slots.default && slots.default()
+                    ),
+                    h(
+                        'div',
+                        {
+                            style: 'display: flex; gap: 0.5rem; justify-content: center',
+                            onClick: handleClick
+                        },
+                        [
+                            h('button', { id: 'add' }, '增加'),
+                            h('button', { id: 'remove' }, '刪除'),
+                            h('button', { id: 'up' }, '上移'),
+                            h('button', { id: 'down' }, '下移')
+                        ]
+                    )
+                ]
+            )
         }
     }
 })
@@ -114,7 +126,9 @@ const ArrayItemWrapper = defineComponent({
             <SchemaItems
                 :schema="schema.items"
                 :uiSchema="
-                    Array.isArray(uiSchema?.items) ? {} : uiSchema?.items
+                    Array.isArray(uiSchema?.items)
+                        ? uiSchema?.items?.[0]
+                        : uiSchema?.items
                 "
                 :errorSchema="errorSchema[index]"
                 :value="itemValue"

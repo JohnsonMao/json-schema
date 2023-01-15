@@ -1,14 +1,19 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, DefineComponent } from 'vue'
 import MonacoEditorVue from './components/MonacoEditor.vue'
 import SchemaForm from '../lib'
 import theme from '../lib/theme'
 import { IDemo } from './types'
 import format from './plugin/customFormat'
+import PasswordWidget from './components/PasswordWidget.vue'
 
 const demos = Object.values(
     import.meta.glob<IDemo>('./demos/*.ts', { import: 'default', eager: true })
 )
+
+theme.components = {
+    PasswordWidget: PasswordWidget as DefineComponent
+}
 
 const stringify = (data: unknown) => JSON.stringify(data, null, 2)
 const demo = ref(demos[0])
@@ -79,17 +84,14 @@ async function handleVaild() {
                 :customValidate="demo.customValidate"
                 :customFormats="format"
             />
-            <button @click="handleVaild">驗證</button>
+            <div style="text-align: right">
+                <button @click="handleVaild">驗證</button>
+            </div>
         </div>
     </div>
 </template>
 
 <style lang="scss">
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
 .container {
     display: flex;
 
@@ -116,6 +118,7 @@ async function handleVaild() {
 
     &__form {
         padding: 1rem;
+        width: 50%;
     }
 }
 </style>

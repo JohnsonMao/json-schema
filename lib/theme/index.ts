@@ -3,6 +3,7 @@ import {
     ComputedRef,
     defineComponent,
     ExtractPropTypes,
+    toRaw,
     h
 } from 'vue'
 import FormItemWidget from '../widgets/FormItemWidget.vue'
@@ -53,7 +54,17 @@ export function getWidget(
         const f = schema.format
 
         if (isObject(w)) {
-            return computed(() => withFormItem(w))
+            return computed(() => withFormItem(toRaw(w)))
+        }
+
+        if (w && Object.hasOwn(context.theme.components || {}, w)) {
+            if (!context.theme.components?.[w]) {
+                throw Error(`${w} theme components not fount`)
+            }
+
+            return computed(() =>
+                withFormItem(context.theme.components?.[w] as Widget)
+            )
         }
 
         if (f && context.formatMapRef.value[f]) {

@@ -12,9 +12,13 @@ const emit = defineEmits<{ (event: 'change', value: string): void }>()
 const configRef = computed(() => {
     if (!props.uiSchema) return
 
-    const { widget, items, properties, ...config } = props.uiSchema
+    const config = props.uiSchema
 
-    return { widget, items, properties, config }
+    delete config.widget
+    delete config.items
+    delete config.properties
+
+    return config
 })
 
 function handleChange(value: string) {
@@ -27,7 +31,7 @@ function handleChange(value: string) {
         :schema="schema"
         :value="value"
         :errors="errorSchema.__errors"
-        :config="configRef?.config"
+        :config="configRef"
         @change="handleChange"
     />
 </template>

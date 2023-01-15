@@ -1,7 +1,7 @@
-import { CustomFormats, DefineWidget } from '../../lib'
+import { CustomFormat, DefineWidget } from '../../lib'
 import ColorWidget from '../components/ColorWidget.vue'
 
-const format: CustomFormats = {
+const format: CustomFormat = {
     name: 'color',
     definition: {
         type: 'string',

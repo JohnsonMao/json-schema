@@ -10,8 +10,7 @@ export default {
                 items: [
                     {
                         type: 'string',
-                        minLength: 10,
-                        title: 'Lover'
+                        minLength: 10
                     },
                     {
                         type: 'number'

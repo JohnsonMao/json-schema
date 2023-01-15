@@ -57,6 +57,7 @@ export interface Schema {
 type WidgetConfig = {
     style?: string | CSSProperties
     class?: unknown
+    label?: string
     [key: string]: unknown
 }
 
@@ -159,6 +160,7 @@ export const DefineArrayProps = {
 
 export interface ITheme {
     widgets: IWidgets
+    components?: Record<string, DefineComponent>
 }
 
 export interface ISchemaFormContext {
@@ -185,7 +187,7 @@ export type AwaitPromise<T> = T extends Promise<infer R> ? R : T
 
 export type AwaitValidateData = AwaitPromise<ReturnType<typeof validateData>>
 
-export interface CustomFormats {
+export interface CustomFormat {
     name: string
     definition: FormatDefinition<string | number>
     component: DefineWidget

@@ -1,6 +1,4 @@
-import { DefineComponent } from 'vue'
 import { CustomValidate, ErrorData } from '../../lib'
-import PasswordWidget from '../components/PasswordWidget.vue'
 import { IDemo } from '../types'
 
 interface IData {
@@ -18,15 +16,12 @@ export default {
         type: 'object',
         properties: {
             password: {
-                title: 'Password',
                 type: 'string'
             },
             retryPassword: {
-                title: 'Retry Password',
                 type: 'string'
             },
             color: {
-                title: 'Color',
                 type: 'string',
                 format: 'color'
             }
@@ -45,10 +40,15 @@ export default {
     uiSchema: {
         properties: {
             password: {
-                widget: PasswordWidget as DefineComponent
+                label: 'Password',
+                widget: 'PasswordWidget'
             },
             retryPassword: {
-                widget: PasswordWidget as DefineComponent
+                label: 'Retry Password',
+                widget: 'PasswordWidget'
+            },
+            color: {
+                label: 'color'
             }
         }
     },

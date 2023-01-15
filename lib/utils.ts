@@ -28,6 +28,10 @@ export function isObject(thing: unknown): thing is Record<string, unknown> {
     return typeof thing === 'object' && thing != null && !Array.isArray(thing)
 }
 
+export function toArray<T = unknown>(thing: T | T[]): T[] {
+    return Array.isArray(thing) ? thing : [thing]
+}
+
 export function mergeObject<T = Record<string, unknown>>(
     obj1: Record<string, unknown>,
     obj2: Record<string, unknown>,

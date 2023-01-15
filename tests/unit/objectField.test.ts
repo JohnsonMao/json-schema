@@ -28,7 +28,7 @@ describe('SchemaForm', () => {
         const input = objectField.find('input')
 
         await input.setValue('Test')
-        expect(objectField.emitted().change[0]?.[0]).toEqual({ name: 'Test' })
+        expect(objectField.emitted().change[0]?.[0]).toEqual({ password: 'Test' })
 
         await input.setValue('')
         expect(objectField.emitted().change[1]?.[0]).toEqual({})
