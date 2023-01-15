@@ -13,6 +13,7 @@ interface IMonacoEditorPlugin {
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd())
+    const isLib = env.VITE_MODE !== 'DEMO'
 
     return {
         base: env.VITE_BASE,
@@ -28,19 +29,20 @@ export default defineConfig(({ mode }) => {
             environment: 'jsdom'
         },
         build: {
-            lib: !!env.VITE_DEMO && {
+            lib: isLib && {
                 entry: resolve(__dirname, 'lib/index.ts'),
                 name: 'json-schema',
                 fileName: 'json-schema'
             },
-            rollupOptions: !!env.VITE_DEMO && {
+            rollupOptions: isLib && {
                 external: ['vue'],
                 output: {
                     globals: {
                         vue: 'Vue'
                     }
                 }
-            }
+            },
+            outDir: isLib ? 'dist' : 'web'
         },
         resolve: {
             alias: {

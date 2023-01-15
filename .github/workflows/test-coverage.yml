@@ -1,8 +1,5 @@
 name: Test Coverage
 
-env:
-  CODECOV_VERSION: 'v0.1.15'
-
 on: [push]
 
 jobs:
@@ -12,11 +9,13 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x]
-        os: [windows-latest]
+        os: [windows-latest, macos-latest]
 
     steps:
-      - name: Use Node.js ${{ matrix.node-version }} 🛎️
+      - name: Checkout 🛎️
         uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
@@ -31,5 +30,4 @@ jobs:
         with:
           flags: unittests
           file: ./coverage/clover.xml
-          version: ${{ env.CODECOV_VERSION }}
           fail_ci_if_error: true
