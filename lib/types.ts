@@ -6,7 +6,7 @@ import {
     ExtractPropTypes
 } from 'vue'
 import Ajv, { ErrorObject, FormatDefinition } from 'ajv'
-import i18n from 'Ajv-i18n'
+import i18n from 'ajv-i18n'
 import { validateData } from './validator'
 
 export enum SchemaType {
