@@ -1,5 +1,5 @@
 import Ajv from 'ajv'
-import i18n from 'Ajv-i18n'
+import i18n from 'ajv-i18n'
 import { mergeObject } from './utils'
 import {
     AddError,
